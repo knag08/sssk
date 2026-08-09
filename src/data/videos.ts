@@ -42,7 +42,7 @@ export const teachings: Video[] = [
   {
     id: 'lmzaRAXoPUk',
     title: 'God Invoking — Active and Passive Presence',
-    blurb: 'The two ways the Divine is met, and what each asks of us.',
+    blurb: 'Divine is present in both ways, and how it can be felt.',
     source: 'kuteer',
   },
   {
@@ -51,7 +51,7 @@ export const teachings: Video[] = [
     blurb: 'Sustaining and dissolving, and what they mean in a life.',
     source: 'kuteer',
   },
-  { id: 'wJwrnmwhrWU', title: 'Spiritual Spheres', blurb: 'A map of the levels a sadhak passes through.', source: 'kuteer' },
+  { id: 'wJwrnmwhrWU', title: 'Spiritual Spheres', blurb: ' A sophisticated divine management system affecting the moods and states of Sadhaks.', source: 'kuteer' },
   {
     id: 'sdBtniTZpac',
     title: 'Self Effort, Meditation and Siddhis',
