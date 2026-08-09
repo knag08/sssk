@@ -1,0 +1,116 @@
+---
+import { contact, nav, site } from '../data/site';
+import { channel } from '../data/videos';
+import Lotus from './Lotus.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="relative overflow-hidden bg-ink-950 text-ink-200">
+  <div
+    class="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-gold-400/60 to-transparent"
+  >
+  </div>
+
+  <div class="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
+    <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
+      <div>
+        <div class="flex items-center gap-3.5">
+          <img src="/logo.png" alt="" width="56" height="56" class="h-14 w-14 rounded-full" />
+          <div>
+            <p class="font-display text-lg font-semibold text-white">{site.name}</p>
+            <p class="text-[0.7rem] font-medium tracking-[0.16em] text-gold-300 uppercase">Spiritual Centre</p>
+          </div>
+        </div>
+        <p class="mt-6 max-w-sm text-[0.94rem] leading-relaxed text-ink-200/80">
+          A public charitable trust in Puttaparthi where worship and service are one — offered daily, without caste,
+          creed or expectation of return.
+        </p>
+        <a
+          href={channel.url}
+          target="_blank"
+          rel="noopener"
+          class="mt-6 inline-flex items-center gap-2.5 rounded-full border border-white/20 py-2 pr-4 pl-2 text-[0.85rem] font-medium text-ink-100/85 transition hover:border-white/45 hover:text-white"
+        >
+          <span class="grid h-7 w-7 place-items-center rounded-md bg-[#FF0000] text-white">
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+              <path
+                d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.5 4.3 12 4.3 12 4.3s-7.5 0-9.4.5A3 3 0 0 0 .5 6.9C0 8.8 0 12 0 12s0 3.2.5 5.1a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.1.5-5.1s0-3.2-.5-5.1ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"
+              ></path>
+            </svg>
+          </span>
+          Watch on YouTube
+        </a>
+
+        <p class="mt-6 text-[0.8rem] text-ink-300/80">{site.established}</p>
+      </div>
+
+      <nav aria-label="Footer">
+        <h2 class="text-[0.7rem] font-semibold tracking-[0.18em] text-gold-300 uppercase">Explore</h2>
+        <ul class="mt-5 space-y-2.5">
+          <li>
+            <a href="/" class="text-[0.92rem] text-ink-200/80 transition hover:text-white">Home</a>
+          </li>
+          {
+            nav.map((item) => (
+              <li>
+                <a href={item.href} class="text-[0.92rem] text-ink-200/80 transition hover:text-white">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <a href="/get-involved/" class="text-[0.92rem] text-ink-200/80 transition hover:text-white">Get involved</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="text-[0.7rem] font-semibold tracking-[0.18em] text-gold-300 uppercase">Visit &amp; write</h2>
+        <address class="mt-5 space-y-1 text-[0.92rem] leading-relaxed text-ink-200/80 not-italic">
+          {contact.addressLines.slice(1).map((line) => <p>{line}</p>)}
+        </address>
+        <div class="mt-5 space-y-2.5">
+          <a
+            href={`mailto:${contact.email}`}
+            class="block text-[0.92rem] break-words text-ink-200/80 transition hover:text-white"
+            >{contact.email}</a
+          >
+          {
+            contact.phone && (
+              <a
+                href={`tel:${contact.phone.replace(/\s/g, '')}`}
+                class="block text-[0.92rem] text-ink-200/80 transition hover:text-white"
+              >
+                {contact.phone}
+              </a>
+            )
+          }
+          <a
+            href={contact.mapsUrl}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-1.5 text-[0.92rem] text-gold-300 transition hover:text-gold-200"
+          >
+            Directions
+            <svg viewBox="0 0 20 20" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 4h9v9M16 4L4.5 15.5"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-14 flex justify-center">
+      <Lotus class="h-6 w-auto text-gold-500/50" />
+    </div>
+
+    <div
+      class="mt-8 flex flex-col items-center gap-3 border-t border-white/10 pt-8 text-[0.78rem] text-ink-300/80 sm:flex-row sm:justify-between"
+    >
+      <p>© {year} {site.name}. All rights reserved.</p>
+      <p class="text-center sm:text-right">Sarva Loka Hitam — for the welfare of all beings.</p>
+    </div>
+  </div>
+</footer>

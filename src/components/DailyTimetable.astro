@@ -1,0 +1,114 @@
+---
+import SevaIcon from './SevaIcon.astro';
+
+/**
+ * The Kuteer's day, from the first Omkar before dawn to the last Parayanam
+ * at night. Anyone may join any of it.
+ */
+const day = [
+  {
+    time: '5:00 – 6:00 AM',
+    title: 'Morning meditation and prayers',
+    text: 'The day opens with twenty-one repetitions of the Omkar, then meditation, then the daily prayers.',
+    icon: 'sunrise' as const,
+  },
+  {
+    time: 'Early morning',
+    title: 'Abhishekam',
+    text: 'The ritual bathing of the Salagrama — about fifteen minutes, with the Abhisheka mantras and the Shiva Stotras.',
+    icon: 'droplet' as const,
+  },
+  {
+    time: '8:00 AM',
+    title: 'Nitya Narayana Seva — breakfast',
+    text: 'Breakfast carried out to the elderly mothers living in the nearby streets.',
+    icon: 'bowl' as const,
+  },
+  {
+    time: '9:00 – 9:45 AM',
+    title: 'Havan — Geetha Homam',
+    text: 'The offering to the fire, with one chapter of the Bhagavad Gita, the Daivagna Hotra mantras and the Gayatri of various deities. Anyone at all may sit and take part.',
+    icon: 'flame' as const,
+    featured: true,
+  },
+  {
+    time: '9:45 – 10:30 AM',
+    title: 'Bhajans',
+    text: 'Singing the glory of the God of all faiths — sung together, every day, without preference of tradition.',
+    icon: 'music' as const,
+  },
+  {
+    time: '10:30 – 11:00 AM',
+    title: 'Name chanting',
+    text: '“Rama Rama Jaya Raja Rama, Rama Rama Jaya Sita Rama” — chanted as a group.',
+    icon: 'beads' as const,
+  },
+  {
+    time: '11:30 AM – 12:30 PM',
+    title: 'Nitya Narayana Seva — lunch',
+    text: 'Lunch packed into carriers and taken out to those in need across Puttaparthi and the villages around it.',
+    icon: 'bowl' as const,
+  },
+  {
+    time: '5:00 – 6:00 PM',
+    title: 'Evening meditation',
+    text: 'Twenty-one repetitions of the Omkar, and meditation as the day closes.',
+    icon: 'lotus-seat' as const,
+  },
+  {
+    time: '6:00 – 8:00 PM',
+    title: 'Parayanam',
+    text: 'Recitation of one of the Vishnu Sahasranama, the Lalitha Sahasranama, the Hanuman Chalisa or the Bhagavad Gita.',
+    icon: 'book' as const,
+  },
+];
+---
+
+<ol class="relative">
+  {/* the thread running down the day */}
+  <span
+    class="pointer-events-none absolute top-4 bottom-4 left-[1.375rem] hidden w-px bg-gradient-to-b from-gold-200 via-gold-300 to-gold-100 sm:block"
+    aria-hidden="true"></span>
+
+  {
+    day.map((item) => (
+      <li class="reveal relative flex gap-5 pb-8 last:pb-0 sm:gap-7">
+        <span
+          class:list={[
+            'relative z-10 grid h-11 w-11 shrink-0 place-items-center rounded-full ring-1 ring-inset',
+            item.featured ? 'bg-ink-950 text-gold-200 ring-ink-950' : 'bg-paper text-gold-700 ring-gold-200',
+          ]}
+        >
+          <SevaIcon name={item.icon} class="h-5 w-5" />
+        </span>
+
+        <div
+          class:list={[
+            'min-w-0 flex-1 rounded-2xl px-6 py-5 sm:px-7 sm:py-6',
+            item.featured ? 'bg-ink-950 text-ink-100' : 'bg-white ring-1 ring-ink-900/8',
+          ]}
+        >
+          <p
+            class:list={[
+              'text-[0.7rem] font-semibold tracking-[0.14em] uppercase tabular-nums',
+              item.featured ? 'text-gold-300' : 'text-gold-700',
+            ]}
+          >
+            {item.time}
+          </p>
+          <h3 class:list={['mt-2 text-[1.15rem] leading-snug font-semibold', item.featured && '!text-white']}>
+            {item.title}
+          </h3>
+          <p class:list={['mt-2 text-[0.94rem] leading-relaxed', item.featured ? 'text-ink-100/75' : 'text-ink-600']}>
+            {item.text}
+          </p>
+          {item.featured && (
+            <p class="mt-4 rounded-lg bg-white/8 px-4 py-3 text-[0.83rem] leading-relaxed text-gold-100">
+              If you are visiting Puttaparthi, this is the easiest hour at which to find us.
+            </p>
+          )}
+        </div>
+      </li>
+    ))
+  }
+</ol>

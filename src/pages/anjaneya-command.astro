@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import Lotus from '../components/Lotus.astro';
+import CallToAction from '../components/CallToAction.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ChannelCallout from '../components/ChannelCallout.astro';
+import { books } from '../data/books';
+import { Image } from 'astro:assets';
+import anjaneyaImage from '../assets/panchamukhi-anjaneya.jpg';
+
+const volumes = books.filter((b) => b.group === 'anjaneya');
+
+import heroImage from '../assets/photos/bhajans-mandir-01.jpg';
+---
+
+<BaseLayout
+  title="Anjaneya’s Command"
+  description="The message of Lord Panchamukhi Anjaneya Swamy, Kshetrapalaka of Sri Sathya Sai Kuteer — the instruction on which the Kuteer was founded."
+>
+  <PageHero
+    eyebrow="Kshetrapalaka"
+    title="Anjaneya’s Command"
+    lede="Lord Panchamukhi Anjaneya Swamy is the guardian deity of this site. This is the message given for Sri Sathya Sai Kuteer — the instruction that everything here follows."
+    image={heroImage}
+    imageAlt="Devotees gathered for bhajans in the Kuteer mandir"
+  />
+
+  <Section space="lg">
+    <div class="mx-auto max-w-3xl">
+      {/* The Kshetrapalaka himself, then his words */}
+      <figure class="reveal text-center">
+        <Image
+          src={anjaneyaImage}
+          alt="The murti of Lord Panchamukhi Anjaneya Swamy, guardian deity of Sri Sathya Sai Kuteer"
+          widths={[380, 620, 900]}
+          sizes="(min-width:640px) 22rem, 70vw"
+          class="mx-auto w-[16rem] rounded-2xl object-cover sm:w-[20rem]"
+          loading="eager"
+        />
+        <figcaption class="mt-5 text-[0.85rem] text-ink-500">
+          Lord Panchamukhi Anjaneya Swamy — <em>Kshetrapalaka</em> of this site
+        </figcaption>
+      </figure>
+
+      <div class="reveal mt-12 text-center">
+        <Lotus class="mx-auto h-6 w-auto text-gold-400" />
+        <p class="eyebrow mt-8">The message of the guardian deity</p>
+      </div>
+
+      <div class="reveal mt-14">
+        <p
+          class="font-display text-[1.5rem] leading-[1.5] font-medium text-balance text-ink-900 sm:text-[1.85rem]"
+        >
+          &ldquo;I, who maintain that every action in life is a form of spiritual practice, urge you all to build these <em
+            class="font-normal">Kutirs</em
+          >.&rdquo;
+        </p>
+      </div>
+
+      <div class="prose-kuteer reveal mt-10 text-[1.08rem] sm:text-[1.12rem]">
+        <p>
+          Through public service, spiritual teachings, and collective spiritual practices, strive to pave the way for a
+          noble life defined by sacrifice, and to establish peace and happiness in society. In a sense, this is not
+          merely an <em>Ashram</em> — a hermitage — but a true <em>Aashrayam</em>: a sanctuary, a refuge.
+        </p>
+        <p>
+          I am the very centre and the source of strength for the <em>Annapurnalaya</em>, the <em>Mandir</em>, and all the
+          other facilities here. This place is not just a father's lap or a sanctum of affection; it is also a great school
+          of equality and of love.
+        </p>
+      </div>
+
+      {/* Pull-out passage */}
+      <figure
+        class="reveal relative my-14 rounded-2xl bg-ink-950 px-7 py-10 text-center sm:px-12 sm:py-14"
+      >
+        <span
+          class="pointer-events-none absolute -top-4 left-1/2 -translate-x-1/2 font-display text-[5rem] leading-none text-gold-400/25 select-none"
+          aria-hidden="true">&ldquo;</span
+        >
+        <blockquote class="font-display text-[1.28rem] leading-[1.6] font-medium text-balance text-white sm:text-[1.5rem]">
+          If, upon leaving Me, you were to say, &lsquo;Swami, I could not stay with You this time,&rsquo; the answer from
+          Me — without a moment's hesitation — must be: <span class="text-gold-200"
+            >&lsquo;You <em>were</em> with Me all along; you were constantly chanting My Name.&rsquo;</span
+          >
+        </blockquote>
+      </figure>
+
+      <div class="prose-kuteer reveal text-[1.08rem] sm:text-[1.12rem]">
+        <p>
+          You must come to Puttaparthi and engage in spiritual practice within the <em>Kutir</em> in such a way that this
+          truth is realised. Whenever you contemplate My Name in your mind, you attain My presence.
+        </p>
+        <p>
+          I am seated here in these <em>Kutirs</em>, fully prepared to serve you the bounty of grace. Transcending the
+          boundaries of time and space, I wish to bring fulfilment to the lives of so many people here. Experience
+          contentment, peace and joy in My divine presence.
+        </p>
+        <p>
+          I, Anjaneya — whose resolve is unfailing — offer this opportunity to you all, and grant you the courage to make
+          the most of it.
+        </p>
+      </div>
+
+      <div class="reveal mt-14 border-t border-ink-900/10 pt-10 text-center">
+        <Lotus class="mx-auto h-5 w-auto text-gold-400/70" />
+        <p class="mt-6 text-[0.9rem] leading-relaxed text-ink-600">
+          Every activity described elsewhere on this site — the meals, the camps, the water, the classes, the food left
+          out for the monkeys — exists because of these words.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* ------------------------------------------------------------- Volumes */}
+  <Section tone="deep" space="md">
+    <SectionHeading
+      eyebrow="The complete record"
+      title="Three volumes, free to download"
+      lede="The commands have been set down as they were given — in the original Telugu as Aanjaneyuni Aanathi, and in English translation."
+    />
+
+    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        volumes.map((book) => (
+          <a
+            href={`/books/${book.file}`}
+            download
+            class="reveal group flex items-center justify-between gap-4 rounded-2xl bg-paper p-6 ring-1 ring-ink-900/8 transition hover:-translate-y-0.5 hover:ring-ink-900/20"
+          >
+            <span>
+              <span class="block text-[1.02rem] leading-snug font-semibold text-ink-900">{book.title}</span>
+              <span class="mt-1 block text-[0.82rem] text-ink-500">{book.note ?? book.language}</span>
+            </span>
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-ink-950 text-white transition-transform duration-300 group-hover:translate-y-0.5">
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 3.5v10m0 0 4-4m-4 4-4-4M4 16.5h12" />
+              </svg>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+
+    <p class="reveal mt-6 text-[0.85rem] text-ink-500">
+      Ten further volumes — on inner experience, on daily practice, on the making of a yogini — are on the <a
+        href="/books/"
+        class="underline decoration-gold-300 underline-offset-2 hover:text-kumkum-600">books page</a
+      >.
+    </p>
+  </Section>
+
+  {/* -------------------------------------------------------------- Shorts */}
+  <Section space="md">
+    <ChannelCallout focus="shorts" tone="paper" />
+  </Section>
+
+  <CallToAction
+    eyebrow="What followed"
+    title="An instruction, and everything it built."
+    text="Six streams of daily and monthly service now run from the Kuteer premises, all of them free, all of them open to anyone who comes."
+    primary={{ href: '/seva/', label: 'See the seva' }}
+    secondary={{ href: '/books/', label: 'Read the volumes' }}
+  />
+</BaseLayout>

@@ -1,0 +1,82 @@
+---
+/**
+ * One modal player for the page. Any [data-video] button opens it.
+ * The iframe is created on demand and destroyed on close, so no request
+ * reaches YouTube until a visitor chooses to watch something.
+ */
+---
+
+<dialog
+  id="video-player"
+  class="m-0 h-full max-h-none w-full max-w-none bg-transparent p-0 backdrop:bg-ink-950/94 backdrop:backdrop-blur-sm"
+  aria-label="Video player"
+>
+  <div class="flex h-full w-full flex-col">
+    <div class="flex items-start justify-between gap-4 px-4 py-3 sm:px-6">
+      <p class="max-w-2xl pt-2 text-[0.9rem] font-medium text-white/85" data-vp-title></p>
+      <button
+        type="button"
+        data-vp-close
+        class="grid h-11 w-11 shrink-0 place-items-center rounded-full text-white/80 transition hover:bg-white/10 hover:text-white"
+      >
+        <span class="sr-only">Close video</span>
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex min-h-0 flex-1 items-center justify-center px-3 pb-4 sm:px-8">
+      <div class="aspect-video max-h-full w-full max-w-5xl overflow-hidden rounded-xl bg-black" data-vp-frame></div>
+    </div>
+
+    <p class="px-6 pb-5 text-center text-[0.8rem] text-white/50" data-vp-note></p>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('video-player') as HTMLDialogElement | null;
+
+  if (dialog) {
+    const frame = dialog.querySelector<HTMLElement>('[data-vp-frame]')!;
+    const titleEl = dialog.querySelector<HTMLElement>('[data-vp-title]')!;
+    const noteEl = dialog.querySelector<HTMLElement>('[data-vp-note]')!;
+
+    const close = () => {
+      frame.innerHTML = '';
+      dialog.close();
+      document.body.style.overflow = '';
+    };
+
+    document.addEventListener('click', (event) => {
+      const trigger = (event.target as HTMLElement).closest<HTMLElement>('[data-video]');
+      if (!trigger) return;
+
+      const id = trigger.dataset.video!;
+      const title = trigger.dataset.title ?? '';
+
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.title = title || 'Video';
+      iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.className = 'h-full w-full border-0';
+
+      frame.replaceChildren(iframe);
+      titleEl.textContent = title;
+      noteEl.innerHTML = `Trouble playing? <a class="underline underline-offset-2" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Open it on YouTube</a>.`;
+
+      dialog.showModal();
+      document.body.style.overflow = 'hidden';
+    });
+
+    dialog.querySelector('[data-vp-close]')?.addEventListener('click', close);
+    dialog.addEventListener('close', () => {
+      frame.innerHTML = '';
+      document.body.style.overflow = '';
+    });
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) close();
+    });
+  }
+</script>

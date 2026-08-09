@@ -1,0 +1,209 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+   The palette is drawn from the Kuteer emblem: navy lettering, a gold ring,
+   sky-blue lotus petals and the red heart at the centre.
+   --------------------------------------------------------------------------- */
+@theme {
+  /* Ink — deep temple navy. Primary text and dark sections. */
+  --color-ink-50: #f2f6fa;
+  --color-ink-100: #dfe9f2;
+  --color-ink-200: #bacfe2;
+  --color-ink-300: #86aac9;
+  --color-ink-400: #4d7ba6;
+  --color-ink-500: #2d5b88;
+  --color-ink-600: #1d4269;
+  --color-ink-700: #163353;
+  --color-ink-800: #102540;
+  --color-ink-900: #0c1c31;
+  --color-ink-950: #07121f;
+
+  /* Gold — the emblem's ring. Rules, eyebrows, small ornament. */
+  --color-gold-50: #fbf7ec;
+  --color-gold-100: #f5ecd2;
+  --color-gold-200: #ead6a4;
+  --color-gold-300: #ddbc70;
+  --color-gold-400: #d0a44b;
+  --color-gold-500: #c08d33;
+  --color-gold-600: #a06f27;
+  --color-gold-700: #7f5423;
+  --color-gold-800: #6a4423;
+  --color-gold-900: #5b3a22;
+
+  /* Sky — lotus petals. Soft tinted surfaces. */
+  --color-sky-soft: #a9cfea;
+  --color-sky-mist: #e8f1f8;
+
+  /* Kumkum — the heart. Used sparingly, for the primary call to action. */
+  --color-kumkum-500: #c8402d;
+  --color-kumkum-600: #ad3223;
+  --color-kumkum-700: #8d281d;
+
+  /* Paper — warm off-white ground */
+  --color-paper: #fbf9f5;
+  --color-paper-deep: #f3eee5;
+
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --ease-gentle: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      scroll-behavior: auto;
+    }
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink-800);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink-900);
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* A single, consistent focus ring across the whole site. */
+  :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-gold-200);
+    color: var(--color-ink-900);
+  }
+}
+
+@layer components {
+  /* The site's one structural motif: a temple-arch top on imagery. */
+  .arch {
+    border-radius: 999px 999px 14px 14px;
+    overflow: clip;
+  }
+
+  .arch-soft {
+    border-radius: 14rem 14rem 14px 14px;
+    overflow: clip;
+  }
+
+  /* Small caps label used above section headings. */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    /* gold-700 rather than gold-600: at this size the lighter tone falls below
+       the 4.5:1 contrast minimum against the paper background. */
+    color: var(--color-gold-700);
+  }
+
+  .prose-kuteer {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-ink-700);
+  }
+
+  .prose-kuteer p + p {
+    margin-top: 1.15em;
+  }
+
+  .prose-kuteer strong {
+    color: var(--color-ink-900);
+    font-weight: 600;
+  }
+
+  .prose-kuteer h2 {
+    font-size: 1.75rem;
+    margin-top: 2.25em;
+    margin-bottom: 0.5em;
+  }
+
+  .prose-kuteer h3 {
+    font-size: 1.3125rem;
+    margin-top: 1.85em;
+    margin-bottom: 0.4em;
+  }
+
+  .prose-kuteer ul {
+    margin-top: 1.1em;
+    display: grid;
+    gap: 0.6em;
+  }
+
+  .prose-kuteer li {
+    position: relative;
+    padding-left: 1.5em;
+  }
+
+  .prose-kuteer li::before {
+    content: '';
+    position: absolute;
+    left: 0.15em;
+    top: 0.72em;
+    width: 0.45em;
+    height: 0.45em;
+    rotate: 45deg;
+    background: var(--color-gold-400);
+  }
+
+  .prose-kuteer a {
+    color: var(--color-ink-600);
+    text-decoration: underline;
+    text-decoration-color: var(--color-gold-300);
+    text-underline-offset: 3px;
+  }
+
+  .prose-kuteer a:hover {
+    color: var(--color-kumkum-600);
+  }
+}
+
+@layer utilities {
+  /*
+   * Reveal-on-scroll.
+   * Content is visible by default; it is only hidden once the head script has
+   * confirmed that JS, IntersectionObserver and full motion are all available
+   * and put `js-reveal` on <html>. If anything at all goes wrong, the page
+   * still reads — it just doesn't animate.
+   */
+  .js-reveal .reveal:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  .js-reveal .reveal {
+    transition:
+      opacity 0.7s var(--ease-gentle),
+      transform 0.7s var(--ease-gentle);
+  }
+}

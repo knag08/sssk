@@ -1,0 +1,194 @@
+---
+import { Image } from 'astro:assets';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Quote from '../components/Quote.astro';
+import CallToAction from '../components/CallToAction.astro';
+import Button from '../components/Button.astro';
+
+import heroImage from '../assets/photos/monthly-narayana-seva-hall-01.jpg';
+import mataImage from '../assets/mata-vishwatmananda-giri.jpg';
+import kitchenImage from '../assets/photos/kitchen-preparation-01.jpg';
+import serviceImage from '../assets/photos/narayana-seva-village-01.jpg';
+
+const pillars = [
+  {
+    label: 'Who we are',
+    text: 'A public charitable trust and spiritual centre in Puttaparthi, offering a platform to spiritual aspirants of every faith. A community of volunteers, not a staff — nobody here is employed to be compassionate.',
+  },
+  {
+    label: 'What we do',
+    text: 'Daily worship, and daily service: meals cooked and carried, free medical camps, free tuition, drinking water without charge, and food for the animals around us.',
+  },
+  {
+    label: 'Why we serve',
+    text: 'Because we were told plainly that every action performed with devotion is itself a spiritual practice. Service is not a good deed added to worship. It is the worship.',
+  },
+  {
+    label: 'Whom we serve',
+    text: 'Anyone in need, without reference to caste, creed or faith — elders living alone, patients who cannot afford care, children whose schooling needs help, families short of water.',
+  },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="Sri Sathya Sai Kuteer is a public charitable trust and spiritual centre in Puttaparthi, established in 2017 under the guidance of Bhagavan Sri Sathya Sai Baba through Mata Vishwatmananda Giri."
+>
+  <PageHero
+    eyebrow="About the Kuteer"
+    title="A house built to be given away"
+    lede="Sri Sathya Sai Kuteer was raised on a single instruction: that a place of practice should be inseparable from a place of service."
+    image={heroImage}
+    imageAlt="Guests seated together for lunch in the Kuteer hall during the monthly Narayana Seva"
+  />
+
+  {/* ------------------------------------------------------------ Pillars */}
+  <Section space="md">
+    <div class="grid gap-px overflow-hidden rounded-2xl bg-ink-900/10 sm:grid-cols-2">
+      {
+        pillars.map((p) => (
+          <div class="reveal bg-paper p-8 sm:p-10">
+            <p class="eyebrow">{p.label}</p>
+            <p class="mt-4 text-[1.02rem] leading-relaxed text-ink-700">{p.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* -------------------------------------------------------------- Story */}
+  <Section tone="deep" space="lg">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
+      <div class="reveal order-2 lg:order-1">
+        <figure>
+          <Image
+            src={mataImage}
+            alt="Swamini Mata Vishwatmananda Giri"
+            widths={[420, 720]}
+            sizes="(min-width:1024px) 22rem, 80vw"
+            class="arch-soft aspect-[4/5] w-full object-cover object-top"
+            loading="lazy"
+          />
+          <figcaption class="mt-5 border-l-2 border-gold-300 pl-4">
+            <p class="font-display text-[1.15rem] font-semibold text-ink-900">Swamini Mata Vishwatmananda Giri</p>
+            <p class="mt-1.5 text-[0.88rem] leading-relaxed text-ink-600">
+              Gurumata of the Kuteer. It was to her that the instruction to build this place was given, and it is under
+              her guidance that everything here is carried out.
+            </p>
+          </figcaption>
+        </figure>
+
+        <div class="mt-8 grid grid-cols-2 gap-4 sm:gap-5">
+          <Image
+            src={kitchenImage}
+            alt="Volunteers preparing vegetables in the Kuteer kitchen"
+            widths={[300, 600]}
+            sizes="(min-width:1024px) 11rem, 45vw"
+            class="aspect-square w-full rounded-xl object-cover"
+            loading="lazy"
+          />
+          <Image
+            src={serviceImage}
+            alt="A volunteer visiting an elderly resident in a village near Puttaparthi"
+            widths={[300, 600]}
+            sizes="(min-width:1024px) 11rem, 45vw"
+            class="aspect-square w-full rounded-xl object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="order-1 lg:order-2">
+        <SectionHeading eyebrow="How it began" title="January 2017, and an instruction" />
+        <div class="prose-kuteer mt-7">
+          <p>
+            In January 2017, Bhagavan Sri Sathya Sai Baba instructed <strong>Mata Vishwatmananda Giri</strong> — through
+            direct conversation — to construct <em>Sri Sathya Sai Kuteer</em>. He said this place would become a centre
+            of <em>sadhana</em> for thousands of seekers, and that <strong
+              >Lord Panchamukhi Anjaneya Swamy is its Kshetrapalaka</strong
+            >, the guardian deity of the site.
+          </p>
+          <p>
+            Through Jnani Bele, Bhagavan Baba then made the practical path possible: the mobilising of funds, the
+            acquisition of the land, the <em>Bhoomi Puja</em>, the architectural style of the buildings, even the choice
+            of builder. The Kuteer was inaugurated on <strong>24 December 2017</strong>, on Christmas Day.
+          </p>
+          <p>
+            What that instruction produced is not a monument. It is a kitchen that starts before dawn, a water plant that
+            never switches off, a hall that becomes a clinic on the 23rd of the month and a classroom every evening.
+          </p>
+        </div>
+        <div class="mt-9">
+          <Button href="/anjaneya-command/" variant="outline">Read Anjaneya's command</Button>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* ------------------------------------------------------------- Quote */}
+  <section class="relative isolate overflow-hidden bg-ink-950 py-24 sm:py-28">
+    <div
+      class="pointer-events-none absolute -top-24 left-1/2 h-[26rem] w-[42rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(192,141,51,0.18),transparent_70%)]"
+    >
+    </div>
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+      <Quote cite="The guardian deity's message">
+        In a sense, this is not merely an <em class="not-italic">Ashram</em> — a hermitage — but a true <em
+          class="not-italic">Aashrayam</em
+        >: a sanctuary, a refuge.
+      </Quote>
+    </div>
+  </section>
+
+  {/* -------------------------------------------------------- Guidance */}
+  <Section space="lg">
+    <div class="grid gap-12 lg:grid-cols-2 lg:gap-20">
+      <div>
+        <SectionHeading eyebrow="Guidance" title="Under whose grace this runs" />
+        <div class="prose-kuteer mt-7">
+          <p>
+            Every activity at the Kuteer is carried out with the grace and blessings of <strong
+              >Gurumata Mata Vishwatmanandagiri</strong
+            >, <strong>Sadguru Sri Anjaneya Swamy</strong> and <strong>Bhagavan Sri Sathya Sai Baba</strong>.
+          </p>
+          <p>
+            Their teaching sets the terms of the work: that any action performed with devotion — while respecting all
+            faiths and transcending caste and religion — is a spiritual practice which fosters wisdom and lifts the
+            individual soul. That is why the Kuteer draws no line between what happens at the <em>homa kunda</em> and what
+            happens at the cooking vessel.
+          </p>
+          <p>
+            That teaching has been set down in writing and given as talks. Both are offered free: thirteen <a
+              href="/books/">volumes to download</a
+            >, and a growing archive of <a href="/media/">recorded satsangs and talks</a>.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <SectionHeading eyebrow="How we work" title="Principles we hold to" />
+        <div class="prose-kuteer mt-7">
+          <ul>
+            <li><strong>Nothing is charged.</strong> No meal, no consultation, no medicine, no litre of water, no tuition hour.</li>
+            <li><strong>No one is asked their caste or their creed.</strong> Need is the only qualification.</li>
+            <li><strong>The recipient is not below the giver.</strong> We call those we serve <em>Narayanas</em> — the Divine, come to receive.</li>
+            <li><strong>Regularity over spectacle.</strong> Daily and monthly, unbroken since 2017, is worth more than an occasional grand gesture.</li>
+            <li><strong>Volunteers, not staff.</strong> The cooking, packing, delivering and teaching is done by members of this community.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <CallToAction
+    eyebrow="Come and see"
+    title="You are welcome at the Kuteer."
+    text="Visitors may join the Geetha Homam at 9:00 AM on any day, and the monthly Narayana Seva on the 23rd. No appointment, no introduction needed."
+    primary={{ href: '/contact/', label: 'Plan a visit' }}
+    secondary={{ href: '/seva/', label: 'Our activities' }}
+  />
+</BaseLayout>

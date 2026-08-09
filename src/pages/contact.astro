@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { contact } from '../data/site';
+
+import heroImage from '../assets/photos/kuteer-signboard-water-01.jpg';
+
+const visitTimes = [
+  { when: 'Every morning, 9:00 AM', what: 'Geetha Homam — open to anyone who wishes to sit' },
+  { when: '23rd of every month', what: 'Medical camps from the morning, Narayana Seva at lunch' },
+  { when: 'Monday to Saturday, evenings', what: 'Tuition classes for children of the village' },
+  { when: 'Any hour, any day', what: 'Free RO-purified drinking water at the premises' },
+];
+---
+
+<BaseLayout
+  title="Contact"
+  description="Visit or write to Sri Sathya Sai Kuteer — D. No. 5/193/7, Kovelaguttapalli Road, Puttaparthi, Andhra Pradesh 515134."
+>
+  <PageHero
+    eyebrow="Find us"
+    title="Contact the Kuteer"
+    lede="We are on Kovelaguttapalli Road in Puttaparthi. Visitors are welcome without an appointment — though a line beforehand helps us make room for you."
+    image={heroImage}
+    imageAlt="The Sri Sathya Sai Kuteer signboard at the premises"
+  />
+
+  <Section space="lg">
+    <div class="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
+      {/* Details */}
+      <div class="reveal">
+        <div class="rounded-2xl bg-white p-8 ring-1 ring-ink-900/8 sm:p-10">
+          <p class="eyebrow">Address</p>
+          <address class="mt-4 space-y-1 text-[1.02rem] leading-relaxed text-ink-800 not-italic">
+            {contact.addressLines.map((line) => <p>{line}</p>)}
+          </address>
+
+          <div class="mt-8 border-t border-ink-900/10 pt-8">
+            <p class="eyebrow">Write to us</p>
+            <a
+              href={`mailto:${contact.email}`}
+              class="mt-3 block text-[1.02rem] break-words text-ink-800 underline decoration-gold-300 underline-offset-4 transition hover:text-kumkum-600"
+              >{contact.email}</a
+            >
+            {
+              contact.phone && (
+                <>
+                  <p class="eyebrow mt-7">Telephone</p>
+                  <a
+                    href={`tel:${contact.phone.replace(/\s/g, '')}`}
+                    class="mt-3 block text-[1.02rem] text-ink-800 underline decoration-gold-300 underline-offset-4 transition hover:text-kumkum-600"
+                  >
+                    {contact.phone}
+                  </a>
+                </>
+              )
+            }
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3 border-t border-ink-900/10 pt-8">
+            <Button href={`mailto:${contact.email}`} variant="primary">Send an email</Button>
+            <Button href={contact.mapsUrl} variant="outline" external>Open in Maps</Button>
+          </div>
+        </div>
+
+        <div class="mt-6 rounded-2xl bg-paper-deep p-8 sm:p-10">
+          <p class="eyebrow">When to come</p>
+          <ul class="mt-5 divide-y divide-ink-900/10">
+            {
+              visitTimes.map((t) => (
+                <li class="py-4 first:pt-0 last:pb-0">
+                  <p class="text-[0.72rem] font-semibold tracking-[0.14em] text-gold-700 uppercase">{t.when}</p>
+                  <p class="mt-1.5 text-[0.95rem] leading-relaxed text-ink-700">{t.what}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      {/* Map */}
+      <div class="reveal">
+        <div class="overflow-hidden rounded-2xl ring-1 ring-ink-900/10">
+          <iframe
+            src={contact.mapsEmbed}
+            title="Map showing the location of Sri Sathya Sai Kuteer in Puttaparthi"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="h-[26rem] w-full border-0 lg:h-[38rem]"></iframe>
+        </div>
+        <p class="mt-4 text-[0.83rem] leading-relaxed text-ink-500">
+          Puttaparthi is in the Sri Sathya Sai district of Andhra Pradesh. The nearest railway station is Sri Sathya Sai
+          Prasanthi Nilayam; the nearest airports are Bengaluru (about 4 hours by road) and Puttaparthi.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <CallToAction
+    eyebrow="Before you write"
+    title="Tell us what brings you."
+    text="Whether you need one of our services, would like to volunteer, or wish to support the work — say so plainly in your message and we will reply directly."
+    primary={{ href: '/get-involved/', label: 'Ways to help' }}
+    secondary={{ href: '/seva/', label: 'Our services' }}
+  />
+</BaseLayout>

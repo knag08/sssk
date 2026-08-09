@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import { thumbnailFor, type Video } from '../data/videos';
+
+interface Props {
+  video: Video;
+  /** Larger treatment for the first item in a section. */
+  size?: 'sm' | 'lg';
+}
+const { video, size = 'sm' } = Astro.props;
+const thumb = thumbnailFor(video.id);
+---
+
+<article class="reveal group">
+  {/*
+    Click-to-play: nothing at all is requested from YouTube until the visitor
+    presses play, and the player that then loads is the no-cookie one.
+  */}
+  <button
+    type="button"
+    class="relative block w-full overflow-hidden rounded-xl bg-ink-900 ring-1 ring-ink-900/10 transition duration-500 hover:ring-ink-900/25"
+    data-video={video.id}
+    data-title={video.title}
+  >
+    {
+      thumb ? (
+        <Image
+          src={thumb}
+          alt=""
+          widths={[420, 720, 960]}
+          sizes={size === 'lg' ? '(min-width:1024px) 40rem, 100vw' : '(min-width:1024px) 22rem, (min-width:640px) 45vw, 100vw'}
+          class="aspect-video w-full object-cover opacity-90 transition-all duration-700 group-hover:scale-[1.03] group-hover:opacity-100"
+          loading="lazy"
+        />
+      ) : (
+        <div class="aspect-video w-full bg-ink-800" />
+      )
+    }
+
+    <span class="absolute inset-0 bg-gradient-to-t from-ink-950/45 to-transparent"></span>
+
+    <span
+      class="absolute top-1/2 left-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-kumkum-500/95 text-white shadow-lg transition-transform duration-500 group-hover:scale-110"
+    >
+      <svg viewBox="0 0 24 24" class="ml-0.5 h-6 w-6" fill="currentColor" aria-hidden="true">
+        <path d="M8 5.2v13.6L19 12 8 5.2Z"></path>
+      </svg>
+    </span>
+    <span class="sr-only">Play “{video.title}” on YouTube</span>
+  </button>
+
+  <h3 class:list={['mt-4 font-semibold', size === 'lg' ? 'text-[1.35rem]' : 'text-[1.05rem] leading-snug']}>
+    {video.title}
+  </h3>
+  {video.blurb && <p class="mt-1.5 text-[0.9rem] leading-relaxed text-ink-600">{video.blurb}</p>}
+  {
+    video.source === 'souljourns' && (
+      <p class="mt-2 text-[0.78rem] text-ink-500">
+        On the{' '}
+        <a
+          href="https://www.youtube.com/@Souljourns"
+          target="_blank"
+          rel="noopener"
+          class="underline decoration-gold-300 underline-offset-2 hover:text-kumkum-600"
+        >
+          Souljourns
+        </a>{' '}
+        channel
+      </p>
+    )
+  }
+</article>

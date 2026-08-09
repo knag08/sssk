@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import SevaIcon from './SevaIcon.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'seva'>;
+}
+const { entry } = Astro.props;
+const d = entry.data;
+
+const accents: Record<string, string> = {
+  gold: 'text-gold-600 bg-gold-50 ring-gold-200',
+  sky: 'text-ink-600 bg-sky-mist ring-ink-200',
+  kumkum: 'text-kumkum-600 bg-kumkum-500/8 ring-kumkum-500/20',
+  ink: 'text-ink-700 bg-ink-50 ring-ink-200',
+};
+---
+
+<a
+  href={`/seva/${entry.id}/`}
+  class="reveal group relative flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-ink-900/8 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_50px_-24px_rgba(12,28,49,0.45)] hover:ring-ink-900/15"
+>
+  <div class="relative aspect-[4/3] overflow-hidden">
+    <Image
+      src={d.cover}
+      alt={d.coverAlt}
+      widths={[400, 700, 1100]}
+      sizes="(min-width:1024px) 23rem, (min-width:640px) 45vw, 100vw"
+      class="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-ink-950/55 via-ink-950/5 to-transparent"></div>
+    <p
+      class="absolute bottom-4 left-5 text-[0.7rem] font-semibold tracking-[0.14em] text-white/85 uppercase drop-shadow"
+    >
+      {d.cadence}
+    </p>
+  </div>
+
+  <div class="flex flex-1 flex-col p-6 sm:p-7">
+    <span
+      class:list={[
+        'inline-grid h-11 w-11 place-items-center rounded-full ring-1 ring-inset',
+        accents[d.accent],
+      ]}
+    >
+      <SevaIcon name={d.icon} class="h-5 w-5" />
+    </span>
+
+    <h3 class="mt-5 text-[1.35rem] leading-snug font-semibold">{d.title}</h3>
+    <p class="mt-2.5 flex-1 text-[0.94rem] leading-relaxed text-ink-600">{d.summary}</p>
+
+    <span
+      class="mt-6 inline-flex items-center gap-1.5 text-[0.83rem] font-semibold text-kumkum-600 transition-colors group-hover:text-kumkum-700"
+    >
+      Read more
+      <svg
+        viewBox="0 0 20 20"
+        class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        aria-hidden="true"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 10h11m0 0-4.2-4.2M15 10l-4.2 4.2"></path>
+      </svg>
+    </span>
+  </div>
+</a>

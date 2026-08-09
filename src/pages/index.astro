@@ -1,0 +1,351 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SevaCard from '../components/SevaCard.astro';
+import StatBand from '../components/StatBand.astro';
+import Button from '../components/Button.astro';
+import Quote from '../components/Quote.astro';
+import Lotus from '../components/Lotus.astro';
+import SevaIcon from '../components/SevaIcon.astro';
+import CallToAction from '../components/CallToAction.astro';
+import PhotoGrid from '../components/PhotoGrid.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+import heroImage from '../assets/photos/narayana-seva-elderly-01.jpg';
+import aboutImage from '../assets/photos/kitchen-cooking-01.jpg';
+import aboutImageTwo from '../assets/photos/water-seva-handover-01.jpg';
+
+import gal1 from '../assets/photos/monthly-narayana-seva-hall-01.jpg';
+import gal2 from '../assets/photos/eye-camp-screening-01.jpg';
+import gal3 from '../assets/photos/education-tuition-class-01.jpg';
+import gal4 from '../assets/photos/vanara-seva-feeding-01.jpg';
+import gal5 from '../assets/photos/water-seva-distribution-01.jpg';
+import gal6 from '../assets/photos/education-planetarium-01.jpg';
+
+const sevas = (await getCollection('seva')).sort((a, b) => a.data.order - b.data.order);
+
+const rhythm = [
+  {
+    icon: 'droplet' as const,
+    time: 'Early morning',
+    title: 'Abhishekam',
+    text: 'A fifteen-minute ritual bathing of the Salagrama, with the Abhisheka mantras and the Shiva Stotras.',
+  },
+  {
+    icon: 'flame' as const,
+    time: '9:00 AM',
+    title: 'Geetha Homam',
+    text: 'A forty-five minute fire ritual — Daivagna Hotra mantras, one chapter of the Bhagavad Gita, and the Gayatri of many deities. Anyone may join.',
+  },
+  {
+    icon: 'bowl' as const,
+    time: 'Midday',
+    title: 'Narayana Seva',
+    text: 'Lunch cooked in the Kuteer kitchen, packed into carriers and delivered to around 55 elderly and destitute people.',
+  },
+  {
+    icon: 'lotus-seat' as const,
+    time: 'Through the day',
+    title: 'Stotra Parayanam',
+    text: 'The chanting of hymns, continuing alongside the work — because at the Kuteer the work is not separate from the worship.',
+  },
+];
+
+const homeGallery = [
+  { src: gal1, alt: 'The Kuteer hall filled with guests during the monthly Narayana Seva' },
+  { src: gal2, alt: "A doctor examining a patient's eyes at the free monthly eye camp" },
+  { src: gal3, alt: 'Children at their evening tuition in the Kuteer hall' },
+  { src: gal4, alt: 'A monkey being fed by hand during Vanara Seva' },
+  { src: gal5, alt: 'Families collecting free RO-purified drinking water at the Kuteer' },
+  { src: gal6, alt: 'Kuteer students at the Jawaharlal Nehru Planetarium in Bangalore' },
+];
+---
+
+<BaseLayout transparentHeader>
+  {/* ---------------------------------------------------------------- Hero */}
+  <section class="relative isolate flex min-h-[92svh] items-end overflow-hidden bg-ink-950">
+    <Image
+      src={heroImage}
+      alt="A volunteer kneeling to hand a freshly cooked meal to an elderly woman outside her home in Puttaparthi"
+      widths={[900, 1400, 2000]}
+      sizes="100vw"
+      class="absolute inset-0 h-full w-full object-cover object-[58%_center]"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/70 to-ink-950/35"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-ink-950/80 via-transparent to-transparent"></div>
+
+    <div class="relative mx-auto w-full max-w-7xl px-5 pt-32 pb-16 sm:px-8 sm:pb-20 lg:pb-24">
+      <div class="max-w-3xl">
+        <p class="eyebrow !text-gold-300">Puttaparthi · Established 2017</p>
+        <h1
+          class="mt-5 text-[2.6rem] leading-[1.04] font-semibold text-white sm:text-[3.6rem] lg:text-[4.4rem]"
+        >
+          Every act of life,<br class="hidden sm:block" /> performed as worship.
+        </h1>
+        <p class="mt-7 max-w-xl text-[1.05rem] leading-relaxed text-ink-100/85 sm:text-[1.18rem]">
+          Sri Sathya Sai Kuteer is a spiritual centre and public charitable trust where the fire ritual at dawn and the
+          meal carried to a lonely elder at noon are understood to be the same practice.
+        </p>
+
+        <div class="mt-10 flex flex-wrap items-center gap-3">
+          <Button href="/seva/" variant="primary">See our seva</Button>
+          <Button href="/about/" variant="ghost">Our story</Button>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold-400/50 to-transparent">
+    </div>
+  </section>
+
+  {/* ------------------------------------------------------------ Welcome */}
+  <Section space="lg">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <div class="reveal">
+        <p class="eyebrow">Welcome to the Kuteer</p>
+        <h2 class="mt-4 text-[2rem] leading-[1.14] font-semibold sm:text-[2.6rem]">
+          Not merely an <em class="font-normal italic">Ashram</em>, but a true <em class="font-normal italic"
+            >Aashrayam</em
+          > — a refuge.
+        </h2>
+        <div class="prose-kuteer mt-6">
+          <p>
+            In January 2017, Bhagavan Sri Sathya Sai Baba instructed Mata Vishwatmananda Giri to build a <em>Kuteer</em
+            > at Puttaparthi — a place, He said, where thousands of seekers would come to practise. Lord Panchamukhi
+            Anjaneya Swamy is its <em>Kshetrapalaka</em>, its guardian deity.
+          </p>
+          <p>
+            The Kuteer was inaugurated on <strong>24 December 2017</strong>, on Christmas Day. What has grown here since
+            is deliberately ordinary: food cooked and carried, eyes examined, water drawn, children taught, monkeys fed.
+            Work done in a way that respects every faith and looks past caste and creed — because the instruction we were
+            given was that this, precisely this, is the spiritual practice.
+          </p>
+        </div>
+        <div class="mt-9">
+          <Button href="/about/" variant="outline">Read our story</Button>
+        </div>
+      </div>
+
+      <div class="reveal relative">
+        <div class="grid grid-cols-5 gap-4 sm:gap-5">
+          <div class="col-span-3">
+            <Image
+              src={aboutImage}
+              alt="A volunteer stirring a large vessel of curry in the Kuteer kitchen"
+              widths={[400, 700]}
+              sizes="(min-width:1024px) 20rem, 55vw"
+              class="arch-soft aspect-[3/4] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="col-span-2 self-end">
+            <Image
+              src={aboutImageTwo}
+              alt="A water can being handed to an elderly woman at the Kuteer gate"
+              widths={[300, 560]}
+              sizes="(min-width:1024px) 14rem, 38vw"
+              class="aspect-[3/4] w-full rounded-xl object-cover"
+              loading="lazy"
+            />
+            <div class="mt-5 rounded-xl bg-paper-deep p-5">
+              <p class="font-display text-[1.6rem] leading-none font-semibold text-ink-900">2017</p>
+              <p class="mt-2 text-[0.82rem] leading-snug text-ink-600">
+                Inaugurated on 24 December, and serving without a break since.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* ------------------------------------------------------------- Numbers */}
+  <Section tone="deep" space="md">
+    <SectionHeading
+      eyebrow="The year in numbers"
+      title="Seva, counted"
+      lede="We count these not as achievements but as a record — so that anyone who supports this work can see exactly where it went."
+      align="center"
+    />
+    <div class="mt-14">
+      <StatBand />
+    </div>
+  </Section>
+
+  {/* ---------------------------------------------------------------- Seva */}
+  <Section id="seva" space="lg">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <SectionHeading
+        eyebrow="What we do"
+        title="Six streams of service"
+        lede="Each runs to its own rhythm — some daily, some on the 23rd of every month, one that never closes at all."
+        class="!max-w-2xl"
+      />
+      <div class="reveal hidden lg:block">
+        <Button href="/seva/" variant="outline">All activities</Button>
+      </div>
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {sevas.map((entry) => <SevaCard entry={entry} />)}
+    </div>
+
+    <div class="reveal mt-10 lg:hidden">
+      <Button href="/seva/" variant="outline">All activities</Button>
+    </div>
+  </Section>
+
+  {/* -------------------------------------------------------------- Quote */}
+  <section class="relative isolate overflow-hidden bg-ink-950 py-24 sm:py-28 lg:py-32">
+    <div
+      class="pointer-events-none absolute -top-24 left-1/2 h-[30rem] w-[46rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(169,207,234,0.14),transparent_70%)]"
+    >
+    </div>
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+      <Quote cite="Sri Anjaneya Swamy — Kshetrapalaka of the Kuteer">
+        I, who maintain that every action in life is a form of spiritual practice, urge you all to build these Kutirs.
+        Through service, through teaching, and through practice together, pave the way for a noble life defined by
+        sacrifice.
+      </Quote>
+      <div class="reveal mt-12 text-center">
+        <Button href="/anjaneya-command/" variant="ghost">Read the full command</Button>
+      </div>
+    </div>
+  </section>
+
+  {/* ------------------------------------------------------------- Rhythm */}
+  <Section space="lg">
+    <SectionHeading
+      eyebrow="A day at the Kuteer"
+      title="The daily rhythm"
+      lede="Visitors are welcome at any of it. Nothing here is ticketed, and nothing requires an introduction."
+      align="center"
+    />
+
+    <div class="mt-16 grid gap-px overflow-hidden rounded-2xl bg-ink-900/10 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        rhythm.map((item) => (
+          <div class="reveal flex flex-col gap-4 bg-paper p-7">
+            <span class="inline-grid h-11 w-11 place-items-center rounded-full bg-gold-50 text-gold-600 ring-1 ring-gold-200 ring-inset">
+              <SevaIcon name={item.icon} class="h-5 w-5" />
+            </span>
+            <div>
+              <p class="text-[0.7rem] font-semibold tracking-[0.16em] text-gold-700 uppercase">{item.time}</p>
+              <h3 class="mt-2 text-[1.2rem] font-semibold">{item.title}</h3>
+              <p class="mt-2.5 text-[0.9rem] leading-relaxed text-ink-600">{item.text}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-10 flex justify-center">
+      <Button href="/sadhana/" variant="outline">Timings and practices</Button>
+    </div>
+  </Section>
+
+  {/* ------------------------------------------------------------ Teaching */}
+  <Section tone="mist" space="md">
+    <SectionHeading
+      eyebrow="Read and listen"
+      title="The teaching, freely given"
+      lede="Thirteen volumes and an archive of talks — none of it sold, none of it behind a sign-up."
+      align="center"
+    />
+
+    <div class="mt-14 grid gap-6 lg:grid-cols-2">
+      <a
+        href="/books/"
+        class="reveal group flex flex-col justify-between gap-8 rounded-2xl bg-paper p-8 ring-1 ring-ink-900/8 transition duration-500 hover:-translate-y-1 hover:shadow-[0_18px_50px_-24px_rgba(12,28,49,0.4)] sm:p-10"
+      >
+        <div>
+          <span
+            class="inline-grid h-12 w-12 place-items-center rounded-full bg-gold-50 text-gold-700 ring-1 ring-gold-200 ring-inset"
+          >
+            <SevaIcon name="book" class="h-5 w-5" />
+          </span>
+          <h3 class="mt-6 text-[1.5rem] font-semibold">Thirteen books, free to download</h3>
+          <p class="mt-3 text-[0.96rem] leading-relaxed text-ink-600">
+            Anjaneya’s Command in three volumes, in Telugu and English. Nithya Sathya Bodha. Inner Experiences. The
+            Making of a Yogini. All of them PDFs, all of them free.
+          </p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 text-[0.85rem] font-semibold text-kumkum-600">
+          Browse the books
+          <svg
+            viewBox="0 0 20 20"
+            class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 10h11m0 0-4.2-4.2M15 10l-4.2 4.2"></path>
+          </svg>
+        </span>
+      </a>
+
+      <a
+        href="/media/"
+        class="reveal group flex flex-col justify-between gap-8 rounded-2xl bg-ink-950 p-8 ring-1 ring-white/10 transition duration-500 hover:-translate-y-1 hover:shadow-[0_18px_50px_-24px_rgba(12,28,49,0.6)] sm:p-10"
+      >
+        <div>
+          <span class="inline-grid h-12 w-12 place-items-center rounded-xl bg-[#FF0000] text-white">
+            <svg viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor" aria-hidden="true">
+              <path
+                d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.5 4.3 12 4.3 12 4.3s-7.5 0-9.4.5A3 3 0 0 0 .5 6.9C0 8.8 0 12 0 12s0 3.2.5 5.1a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.1.5-5.1s0-3.2-.5-5.1ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"
+              ></path>
+            </svg>
+          </span>
+          <h3 class="mt-6 text-[1.5rem] font-semibold !text-white">Talks, satsangs and Shorts</h3>
+          <p class="mt-3 text-[0.96rem] leading-relaxed text-ink-100/75">
+            Nineteen recorded talks on karma, meditation and practice — and the Shorts on our YouTube channel, where
+            Anjaneya’s commands are posted as they are given.
+          </p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 text-[0.85rem] font-semibold text-gold-300">
+          Watch and listen
+          <svg
+            viewBox="0 0 20 20"
+            class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 10h11m0 0-4.2-4.2M15 10l-4.2 4.2"></path>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </Section>
+
+  {/* ------------------------------------------------------------ Gallery */}
+  <Section tone="deep" space="md">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <SectionHeading eyebrow="From the Kuteer" title="Photographs from this year" class="!max-w-xl" />
+      <div class="reveal">
+        <Button href="/gallery/" variant="outline">Full gallery</Button>
+      </div>
+    </div>
+    <div class="mt-12">
+      <PhotoGrid photos={homeGallery} columns={3} />
+    </div>
+    <div class="mt-12 flex justify-center">
+      <Lotus class="h-6 w-auto text-gold-400/60" />
+    </div>
+  </Section>
+
+  <CallToAction
+    title="There is always more to be done than hands to do it."
+    text="Come and serve for a morning, support a month of meals, or simply visit and sit with us at the Geetha Homam. Every one of those is welcome."
+    primary={{ href: '/get-involved/', label: 'Ways to help' }}
+    secondary={{ href: '/contact/', label: 'Visit us' }}
+  />
+
+  <Lightbox />
+</BaseLayout>

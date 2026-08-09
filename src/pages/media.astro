@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import VideoCard from '../components/VideoCard.astro';
+import VideoPlayer from '../components/VideoPlayer.astro';
+import ChannelCallout from '../components/ChannelCallout.astro';
+import CallToAction from '../components/CallToAction.astro';
+import Button from '../components/Button.astro';
+import { journeys, satsangArchive, souljourns, teachings } from '../data/videos';
+
+import heroImage from '../assets/photos/monthly-narayana-seva-dining-01.jpg';
+---
+
+<BaseLayout
+  title="Talks & Media"
+  description="Talks, satsangs and interviews from Sri Sathya Sai Kuteer — on karma and dharma, meditation, the spiritual spheres — plus the YouTube Shorts carrying Anjaneya’s commands."
+>
+  <PageHero
+    eyebrow="Talks & media"
+    title="Listen, at your own pace"
+    lede="Teachings recorded at the Kuteer, the life stories of two sadhaks, and the interviews given to Souljourns. Nothing here is paid for or gated."
+    image={heroImage}
+    imageAlt="Devotees gathered in the Kuteer hall"
+  />
+
+  {/* ------------------------------------------------------------- Channel */}
+  <Section space="md">
+    <ChannelCallout focus="shorts" />
+  </Section>
+
+  {/* ------------------------------------------------------------ Teachings */}
+  <Section space="md">
+    <SectionHeading
+      eyebrow="Teachings"
+      title="On practice, and what gets in its way"
+      lede="Talks given at the Kuteer, each standing on its own — you need not begin at the first."
+    />
+    <div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {teachings.map((video) => <VideoCard video={video} />)}
+    </div>
+  </Section>
+
+  {/* ------------------------------------------------------------ Journeys */}
+  <Section tone="deep" space="md">
+    <SectionHeading
+      eyebrow="Spiritual journeys"
+      title="Two sadhaks, in their own words"
+      lede="Shivangini and Gyani Baile on the roads that brought them here."
+    />
+    <div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {journeys.map((video) => <VideoCard video={video} />)}
+    </div>
+  </Section>
+
+  {/* ---------------------------------------------------------- Souljourns */}
+  <Section space="md">
+    <SectionHeading
+      eyebrow="Interviews"
+      title="The Souljourns conversations"
+      lede="Recorded by Ted Henry for the Souljourns channel, including the five-part account of how a yogini is made."
+    />
+    <div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {souljourns.map((video) => <VideoCard video={video} />)}
+    </div>
+  </Section>
+
+  {/* -------------------------------------------------------------- Satsang */}
+  <Section tone="deep" space="md">
+    <div class="reveal grid items-center gap-8 rounded-2xl bg-paper p-8 ring-1 ring-ink-900/10 sm:p-12 lg:grid-cols-[1fr_auto] lg:gap-12">
+      <div>
+        <p class="eyebrow">Satsang recordings</p>
+        <h2 class="mt-4 text-[1.6rem] leading-snug font-semibold sm:text-[2rem]">
+          Swamy Sujnanda Giri, speaking to working people
+        </h2>
+        <p class="mt-4 max-w-xl text-[0.98rem] leading-relaxed text-ink-600">
+          A satsang given to corporate employees — on carrying practice into an ordinary working life. The recordings
+          are kept in a shared folder rather than published as video.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <Button href={satsangArchive} variant="outline" external>Open the recordings</Button>
+      </div>
+    </div>
+  </Section>
+
+  <CallToAction
+    eyebrow="Prefer to read?"
+    title="Every talk here has a book beside it."
+    text="The same teaching is set down in thirteen volumes, in Telugu and English, all free to download."
+    primary={{ href: '/books/', label: 'Browse the books' }}
+    secondary={{ href: '/sadhana/', label: 'Daily practice' }}
+  />
+
+  <VideoPlayer />
+</BaseLayout>

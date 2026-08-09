@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import SevaCard from '../../components/SevaCard.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import ScheduleTable from '../../components/ScheduleTable.astro';
+
+import heroImage from '../../assets/photos/narayana-seva-serving-01.jpg';
+
+const sevas = (await getCollection('seva')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Seva"
+  description="The service activities of Sri Sathya Sai Kuteer — daily and monthly Narayana Seva, free medical camps, free tuition, 24×7 drinking water, Vanara Seva and grocery distribution."
+>
+  <PageHero
+    eyebrow="Our activities"
+    title="Six streams of service"
+    lede="Some run every day, some on the 23rd of each month, and one never closes at all. All of them are free, and all of them are open to anyone who needs them."
+    image={heroImage}
+    imageAlt="Volunteers serving lunch from steel vessels at the Kuteer"
+  />
+
+  <Section space="lg">
+    <h2 class="sr-only">Service activities</h2>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {sevas.map((entry) => <SevaCard entry={entry} />)}
+    </div>
+  </Section>
+
+  <Section tone="deep" space="md">
+    <SectionHeading
+      eyebrow="At a glance"
+      title="Where and when"
+      lede="If you are planning to visit, or you know someone who needs one of these services, this is the whole schedule in one place."
+    />
+    <div class="mt-12">
+      <ScheduleTable />
+    </div>
+  </Section>
+
+  <CallToAction
+    title="Choose the seva you would like to carry."
+    text="Cook and pack a morning's meals, help at the registration desk on the 23rd, teach an evening class, or fund a month of any one of these."
+    primary={{ href: '/get-involved/', label: 'Ways to help' }}
+    secondary={{ href: '/impact/', label: 'This year in numbers' }}
+  />
+</BaseLayout>

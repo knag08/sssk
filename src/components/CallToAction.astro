@@ -1,0 +1,39 @@
+---
+import Button from './Button.astro';
+import Lotus from './Lotus.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  text: string;
+  primary?: { href: string; label: string };
+  secondary?: { href: string; label: string };
+}
+
+const {
+  eyebrow = 'Join us',
+  title,
+  text,
+  primary = { href: '/get-involved/', label: 'Get involved' },
+  secondary,
+} = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden bg-ink-950">
+  <div
+    class="pointer-events-none absolute -top-32 left-1/2 h-[28rem] w-[42rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(192,141,51,0.22),transparent_68%)]"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-3xl px-5 py-20 text-center sm:px-8 sm:py-24 lg:py-28">
+    <Lotus class="mx-auto h-6 w-auto text-gold-400/70" />
+    <p class="eyebrow mt-8 !text-gold-300">{eyebrow}</p>
+    <h2 class="mt-4 text-[2rem] leading-[1.14] font-semibold !text-white sm:text-[2.6rem]">{title}</h2>
+    <p class="mx-auto mt-6 max-w-xl text-[1.02rem] leading-relaxed text-ink-100/75">{text}</p>
+
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+      <Button href={primary.href} variant="primary">{primary.label}</Button>
+      {secondary && <Button href={secondary.href} variant="ghost">{secondary.label}</Button>}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,133 @@
+---
+import { statSync } from 'node:fs';
+import { join } from 'node:path';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Lotus from '../components/Lotus.astro';
+import CallToAction from '../components/CallToAction.astro';
+import ChannelCallout from '../components/ChannelCallout.astro';
+import { bookGroups, books } from '../data/books';
+
+import heroImage from '../assets/photos/education-student-writing-01.jpg';
+
+/** Read each PDF's size at build time so the page never carries a stale figure. */
+const sizeOf = (file: string) => {
+  try {
+    const mb = statSync(join(process.cwd(), 'public', 'books', file)).size / 1024 / 1024;
+    return mb >= 1 ? `${mb.toFixed(1)} MB` : `${Math.round(mb * 1024)} KB`;
+  } catch {
+    return '';
+  }
+};
+
+const grouped = bookGroups.map((g) => ({
+  ...g,
+  items: books.filter((b) => b.group === g.id).map((b) => ({ ...b, size: sizeOf(b.file) })),
+}));
+---
+
+<BaseLayout
+  title="Books"
+  description="Free eBooks from Sri Sathya Sai Kuteer — Anjaneya’s Command in Telugu and English, Nithya Sathya Bodha, Inner Experiences, The Making of a Yogini and more. All free to download."
+>
+  <PageHero
+    eyebrow="Free to download"
+    title="Books from the Kuteer"
+    lede="Thirteen titles, in Telugu and in English, offered without charge. They are an attempt to set down the love and grace shown by Bhagavan Sri Sathya Sai Baba and by Lord Hanuman."
+    image={heroImage}
+    imageAlt="A student writing at the Kuteer"
+  />
+
+  <Section space="md">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <Lotus class="mx-auto h-5 w-auto text-gold-400" />
+      <p class="mt-7 text-[1.02rem] leading-relaxed text-ink-600">
+        The books are authored by <strong class="font-semibold text-ink-900">Shivangani</strong>, by <strong
+          class="font-semibold text-ink-900">Swamini Mata Vishwatmananda Giri</strong
+        >, and by her disciples <strong class="font-semibold text-ink-900">Swamy Sujnanda Giri</strong> and <strong
+          class="font-semibold text-ink-900">Gyani Baile</strong
+        >. Every one of them is free — there is nothing to buy, and nothing to sign up for.
+      </p>
+    </div>
+
+    <div class="mt-16 space-y-14">
+      {
+        grouped.map((group) => (
+          <section class="reveal">
+            <div class="max-w-2xl">
+              <h2 class="text-[1.55rem] leading-snug font-semibold sm:text-[1.85rem]">{group.title}</h2>
+              <p class="mt-3 text-[0.98rem] leading-relaxed text-ink-600">{group.blurb}</p>
+            </div>
+
+            <ul class="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {group.items.map((book) => (
+                <li>
+                  <a
+                    href={`/books/${book.file}`}
+                    download
+                    class="group flex h-full flex-col justify-between gap-5 rounded-2xl bg-white p-6 ring-1 ring-ink-900/8 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-24px_rgba(12,28,49,0.5)] hover:ring-ink-900/18"
+                  >
+                    <div>
+                      <div class="flex items-start justify-between gap-3">
+                        <span class="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gold-50 text-gold-700 ring-1 ring-gold-200 ring-inset">
+                          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.4">
+                            <path d="M6.5 3h7.2L19 8.3V21H6.5A1.5 1.5 0 0 1 5 19.5v-15A1.5 1.5 0 0 1 6.5 3Z" />
+                            <path d="M13.4 3v5.4H19" />
+                          </svg>
+                        </span>
+                        <span class="rounded-full bg-sky-mist px-2.5 py-1 text-[0.68rem] font-semibold tracking-wide text-ink-600">
+                          {book.language}
+                        </span>
+                      </div>
+
+                      <h3 class="mt-4 text-[1.05rem] leading-snug font-semibold">{book.title}</h3>
+                      {book.note && <p class="mt-1 text-[0.85rem] text-ink-500">{book.note}</p>}
+                    </div>
+
+                    <span class="flex items-center justify-between border-t border-ink-900/8 pt-4">
+                      <span class="inline-flex items-center gap-1.5 text-[0.83rem] font-semibold text-kumkum-600">
+                        Download PDF
+                        <svg
+                          viewBox="0 0 20 20"
+                          class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-y-0.5"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M10 3.5v10m0 0 4-4m-4 4-4-4M4 16.5h12" />
+                        </svg>
+                      </span>
+                      {book.size && <span class="text-[0.75rem] text-ink-500 tabular-nums">{book.size}</span>}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section tone="deep" space="md">
+    <SectionHeading
+      eyebrow="Also"
+      title="Hear the same teaching spoken"
+      lede="Much of what is written in these volumes has also been given as talks, and the commands themselves continue to arrive."
+    />
+    <div class="mt-12">
+      <ChannelCallout focus="shorts" />
+    </div>
+  </Section>
+
+  <CallToAction
+    eyebrow="A request"
+    title="Read them, and pass them on."
+    text="If a volume has been of use to you, it costs nothing to share. Write to us if you would like printed copies, or if you can help with translation."
+    primary={{ href: '/contact/', label: 'Write to us' }}
+    secondary={{ href: '/anjaneya-command/', label: 'Anjaneya’s Command' }}
+  />
+</BaseLayout>

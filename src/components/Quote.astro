@@ -1,0 +1,40 @@
+---
+interface Props {
+  cite?: string;
+  /** Rendered on a dark ground by default. */
+  tone?: 'ink' | 'paper';
+  class?: string;
+}
+const { cite, tone = 'ink', class: className = '' } = Astro.props;
+const invert = tone === 'ink';
+---
+
+<figure class:list={['reveal relative mx-auto max-w-3xl text-center', className]}>
+  <span
+    class:list={[
+      'pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 font-display text-[6rem] leading-none select-none',
+      invert ? 'text-gold-400/20' : 'text-gold-400/35',
+    ]}
+    aria-hidden="true">&ldquo;</span
+  >
+  <blockquote
+    class:list={[
+      'relative font-display text-[1.4rem] leading-[1.55] font-medium text-balance sm:text-[1.75rem] lg:text-[1.95rem]',
+      invert ? 'text-white' : 'text-ink-900',
+    ]}
+  >
+    <slot />
+  </blockquote>
+  {
+    cite && (
+      <figcaption
+        class:list={[
+          'mt-7 text-[0.72rem] font-semibold tracking-[0.18em] uppercase',
+          invert ? 'text-gold-300' : 'text-gold-600',
+        ]}
+      >
+        {cite}
+      </figcaption>
+    )
+  }
+</figure>

@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SevaIcon from '../components/SevaIcon.astro';
+import Quote from '../components/Quote.astro';
+import CallToAction from '../components/CallToAction.astro';
+import ScheduleTable from '../components/ScheduleTable.astro';
+import DailyTimetable from '../components/DailyTimetable.astro';
+import ChannelCallout from '../components/ChannelCallout.astro';
+
+import heroImage from '../assets/photos/havan-geetha-homam-01.jpg';
+
+const asSadhana = [
+  {
+    icon: 'bowl' as const,
+    title: 'Narayana Seva',
+    text: 'A meal cooked, carried and offered. Counted here as practice, not as charity.',
+    href: '/seva/narayana-seva/',
+  },
+  {
+    icon: 'stethoscope' as const,
+    title: 'Medical service',
+    text: 'Free eye, allopathy and naturopathy camps on the 23rd of every month.',
+    href: '/seva/medical-camps/',
+  },
+  {
+    icon: 'book' as const,
+    title: 'Educational service',
+    text: 'Evening tuition, computer literacy and yoga for the children of the village.',
+    href: '/seva/education/',
+  },
+  {
+    icon: 'droplet' as const,
+    title: 'Drinking water supply',
+    text: 'RO-purified water, given without charge, at any hour of the day or night.',
+    href: '/seva/drinking-water/',
+  },
+  {
+    icon: 'paw' as const,
+    title: 'Vanara Seva',
+    text: 'Food for the monkey troops of Puttaparthi, twice every week.',
+    href: '/seva/vanara-seva/',
+  },
+  {
+    icon: 'basket' as const,
+    title: 'Grocery distribution',
+    text: 'Provisions for households identified as being in immediate need.',
+    href: '/seva/grocery-distribution/',
+  },
+];
+---
+
+<BaseLayout
+  title="Daily Sadhana"
+  description="The daily timetable at Sri Sathya Sai Kuteer — meditation at 5:00 AM, Abhishekam, Havan at 9:00, bhajans, name chanting and evening Parayanam — and the service counted as sadhana alongside them."
+>
+  <PageHero
+    eyebrow="Daily practice"
+    title="Where the worship ends and the work begins — nowhere"
+    lede="At the Kuteer the fire ritual and the cooking vessel are held to be the same practice. This page sets out both: the rites performed each day, and the service counted equally as sadhana."
+    image={heroImage}
+    imageAlt="The Geetha Homam — the daily offering to the fire at the Kuteer"
+  />
+
+  {/* ----------------------------------------------------------- Timetable */}
+  <Section space="lg">
+    <div class="grid gap-12 lg:grid-cols-[22rem_1fr] lg:gap-16">
+      <div class="lg:sticky lg:top-28 lg:self-start">
+        <SectionHeading
+          eyebrow="The day, hour by hour"
+          title="From the first Omkar to the last recitation"
+          lede="Visitors may join any of it. There is nothing to book, nothing to pay, and no introduction needed."
+        />
+        <p class="reveal mt-8 rounded-2xl bg-paper-deep p-6 text-[0.9rem] leading-relaxed text-ink-600">
+          The Kuteer keeps this rhythm every day of the year. Between the meditation at dawn and the Parayanam at night
+          sit the meals, the classes and the camps — all of it counted as the same practice.
+        </p>
+      </div>
+
+      <div>
+        <DailyTimetable />
+      </div>
+    </div>
+  </Section>
+
+  {/* -------------------------------------------------------------- Quote */}
+  <section class="relative isolate overflow-hidden bg-ink-950 py-24 sm:py-28">
+    <div
+      class="pointer-events-none absolute -top-24 left-1/2 h-[26rem] w-[42rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(169,207,234,0.14),transparent_70%)]"
+    >
+    </div>
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+      <Quote cite="The teaching the Kuteer follows">
+        Any action performed with devotion — respecting all faiths, and transcending caste and religion — is itself a
+        spiritual practice, one that fosters wisdom and lifts the individual soul.
+      </Quote>
+    </div>
+  </section>
+
+  {/* --------------------------------------------------- Service as sadhana */}
+  <Section space="lg">
+    <SectionHeading
+      eyebrow="Service as sadhana"
+      title="Six more practices, performed with the hands"
+      lede="These are listed by the Kuteer alongside the Abhishekam and the Homam, in the same list, without distinction of rank."
+    />
+
+    <div class="mt-14 grid gap-px overflow-hidden rounded-2xl bg-ink-900/10 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        asSadhana.map((s) => (
+          <a href={s.href} class="reveal group flex flex-col gap-4 bg-paper p-7 transition hover:bg-gold-50/60">
+            <span class="inline-grid h-11 w-11 place-items-center rounded-full bg-gold-50 text-gold-600 ring-1 ring-gold-200 ring-inset transition group-hover:bg-white">
+              <SevaIcon name={s.icon} class="h-5 w-5" />
+            </span>
+            <div>
+              <h3 class="text-[1.12rem] font-semibold transition group-hover:text-kumkum-600">{s.title}</h3>
+              <p class="mt-2 text-[0.9rem] leading-relaxed text-ink-600">{s.text}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* ----------------------------------------------------------- Schedule */}
+  <Section tone="deep" space="md">
+    <SectionHeading
+      eyebrow="Full schedule"
+      title="Everything, and when it happens"
+      lede="Useful if you are planning a visit, or directing someone towards a service they need."
+    />
+    <div class="mt-12">
+      <ScheduleTable />
+    </div>
+  </Section>
+
+  <Section space="md">
+    <ChannelCallout focus="channel" tone="paper" />
+  </Section>
+
+  <CallToAction
+    eyebrow="Sit with us"
+    title="The Homam begins at nine."
+    text="Any visitor to Puttaparthi is welcome to join the Geetha Homam, or to arrive on the 23rd and stay for the Narayana Seva afterwards."
+    primary={{ href: '/contact/', label: 'Find us' }}
+    secondary={{ href: '/anjaneya-command/', label: 'Anjaneya’s command' }}
+  />
+</BaseLayout>

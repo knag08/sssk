@@ -1,0 +1,41 @@
+---
+import { stats, reportYear } from '../data/site';
+
+interface Props {
+  tone?: 'paper' | 'ink';
+}
+const { tone = 'paper' } = Astro.props;
+const invert = tone === 'ink';
+---
+
+<div class="grid gap-px overflow-hidden rounded-2xl sm:grid-cols-2 lg:grid-cols-4"
+  class:list={[invert ? 'bg-white/10' : 'bg-ink-900/10']}>
+  {
+    stats.map((s) => (
+      <div
+        class:list={[
+          'reveal flex flex-col justify-between gap-4 p-7 sm:p-8',
+          invert ? 'bg-ink-950' : 'bg-paper',
+        ]}
+      >
+        <p
+          class:list={[
+            'font-display text-[2.15rem] leading-none font-semibold tabular-nums sm:text-[2.45rem]',
+            invert ? 'text-white' : 'text-ink-900',
+          ]}
+        >
+          {s.value}
+        </p>
+        <div>
+          <p class:list={['text-[0.95rem] font-semibold', invert ? 'text-gold-300' : 'text-kumkum-600']}>{s.label}</p>
+          <p class:list={['mt-1.5 text-[0.85rem] leading-relaxed', invert ? 'text-ink-200/70' : 'text-ink-600']}>
+            {s.note}
+          </p>
+        </div>
+      </div>
+    ))
+  }
+</div>
+<p class:list={['mt-4 text-[0.78rem]', invert ? 'text-ink-300/60' : 'text-ink-500']}>
+  Figures from the Kuteer activity report for the financial year {reportYear}.
+</p>

@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SevaIcon from '../components/SevaIcon.astro';
+import Button from '../components/Button.astro';
+import Lotus from '../components/Lotus.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { contact } from '../data/site';
+
+import heroImage from '../assets/photos/kitchen-packing-meals-01.jpg';
+
+const subject = encodeURIComponent('Volunteering at Sri Sathya Sai Kuteer');
+const donateSubject = encodeURIComponent('Contributing to Sri Sathya Sai Kuteer');
+
+const ways = [
+  {
+    icon: 'bowl' as const,
+    title: 'Cook, pack and deliver',
+    text: 'The kitchen starts before most of Puttaparthi is awake. Chopping, cooking, filling the carriers and going out on the delivery round — this is where most hands are needed, every day of the year.',
+    commitment: 'A morning, or a week',
+  },
+  {
+    icon: 'stethoscope' as const,
+    title: 'Help at the medical camps',
+    text: 'On the 23rd of every month, three camps run side by side. Volunteers manage registration, guide patients between stations, and sit with those who are anxious or alone.',
+    commitment: 'One day a month',
+  },
+  {
+    icon: 'book' as const,
+    title: 'Teach an evening class',
+    text: 'Around forty children come six evenings a week. If you can teach mathematics, English, science or basic computing — or lead a Sunday yoga session — there is a class waiting.',
+    commitment: 'An evening a week',
+  },
+  {
+    icon: 'basket' as const,
+    title: 'Offer a professional skill',
+    text: 'Doctors, optometrists, teachers, accountants, photographers, plumbers and electricians have all served here. Whatever you are good at, there is likely a use for it.',
+    commitment: 'As you are able',
+  },
+];
+
+const supports = [
+  { value: 'One day', label: 'of Narayana Seva', text: 'Lunch cooked and delivered to around 55 elderly and destitute people.' },
+  { value: 'One camp', label: 'of eye care', text: 'Screening for 60–70 people, and surgery arranged for those who need it.' },
+  { value: 'One month', label: 'of tuition', text: 'Evening classes and daily snacks for around 40 children.' },
+  { value: 'One month', label: 'of water', text: 'RO-purified drinking water, free, around the clock, for over 1,000 families.' },
+];
+---
+
+<BaseLayout
+  title="Get Involved"
+  description="Volunteer at Sri Sathya Sai Kuteer, Puttaparthi, or support its free meals, medical camps, tuition and drinking water service."
+>
+  <PageHero
+    eyebrow="Get involved"
+    title="There is always more to be done than hands to do it"
+    lede="You can serve for a morning, teach for an evening a week, or support a month of any one of these services. All of it helps, and none of it is too small."
+    image={heroImage}
+    imageAlt="Volunteers ladling meals into steel carriers in the Kuteer kitchen"
+  />
+
+  {/* ---------------------------------------------------------- Volunteer */}
+  <Section space="lg">
+    <SectionHeading
+      eyebrow="Volunteer"
+      title="Four ways to serve, in person"
+      lede="No experience is required for most of it, and no commitment is too short. Visitors to Puttaparthi often serve for a single morning."
+    />
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2">
+      {
+        ways.map((w) => (
+          <article class="reveal flex flex-col gap-5 rounded-2xl bg-white p-8 ring-1 ring-ink-900/8 sm:p-9">
+            <div class="flex items-start justify-between gap-4">
+              <span class="inline-grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gold-50 text-gold-600 ring-1 ring-gold-200 ring-inset">
+                <SevaIcon name={w.icon} class="h-5 w-5" />
+              </span>
+              <span class="rounded-full bg-sky-mist px-3 py-1 text-[0.7rem] font-semibold tracking-wide text-ink-600">
+                {w.commitment}
+              </span>
+            </div>
+            <div>
+              <h3 class="text-[1.3rem] font-semibold">{w.title}</h3>
+              <p class="mt-3 text-[0.95rem] leading-relaxed text-ink-600">{w.text}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-12 rounded-2xl bg-ink-950 p-8 sm:p-12">
+      <div class="grid items-center gap-8 lg:grid-cols-[1.4fr_auto]">
+        <div>
+          <p class="eyebrow !text-gold-300">To volunteer</p>
+          <h3 class="mt-3 text-[1.55rem] leading-snug font-semibold !text-white sm:text-[1.9rem]">
+            Write to us and tell us when you'll be in Puttaparthi.
+          </h3>
+          <p class="mt-4 max-w-xl text-[0.98rem] leading-relaxed text-ink-100/75">
+            A line with your name, the dates you are here and what you would like to help with is enough. We will write
+            back with where to come and at what hour.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <Button href={`mailto:${contact.email}?subject=${subject}`} variant="primary">Email us</Button>
+          <Button href="/contact/" variant="ghost">Contact page</Button>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* ----------------------------------------------------------- Contribute */}
+  <Section tone="deep" space="lg" id="contribute">
+    <SectionHeading
+      eyebrow="Contribute"
+      title="Support the work from wherever you are"
+      lede="Everything the Kuteer offers is free at the point of need. It stays that way because people give. Here is roughly what a contribution becomes."
+    />
+
+    <div class="mt-14 grid gap-px overflow-hidden rounded-2xl bg-ink-900/10 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        supports.map((s) => (
+          <div class="reveal bg-paper p-7">
+            <p class="font-display text-[1.5rem] leading-tight font-semibold text-ink-900">{s.value}</p>
+            <p class="text-[0.95rem] font-semibold text-kumkum-600">{s.label}</p>
+            <p class="mt-3 text-[0.87rem] leading-relaxed text-ink-600">{s.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Placeholder panel — replace with bank / UPI details when ready */}
+    <div class="reveal mt-10 overflow-hidden rounded-2xl bg-paper ring-1 ring-ink-900/10">
+      <div class="grid lg:grid-cols-[1.3fr_1fr]">
+        <div class="p-8 sm:p-10">
+          <p class="eyebrow">How to give</p>
+          <h3 class="mt-3 text-[1.5rem] leading-snug font-semibold sm:text-[1.8rem]">
+            Please write to us, and we will send you the details.
+          </h3>
+          <div class="prose-kuteer mt-5 text-[0.98rem]">
+            <p>
+              Sri Sathya Sai Kuteer is a public charitable trust. Contributions may be made towards a particular
+              service — a day of Narayana Seva, a monthly medical camp, a term of tuition — or left to the Trust to
+              apply where the need is greatest.
+            </p>
+            <p>
+              Tell us in your message what you would like to support and in what form, and one of the trustees will
+              reply with the account details and confirm the receipt.
+            </p>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <Button href={`mailto:${contact.email}?subject=${donateSubject}`} variant="primary">
+              Write to the trustees
+            </Button>
+          </div>
+        </div>
+
+        <div class="border-t border-ink-900/10 bg-paper-deep p-8 sm:p-10 lg:border-t-0 lg:border-l">
+          <p class="eyebrow">Good to know</p>
+          <ul class="mt-5 grid gap-4 text-[0.9rem] leading-relaxed text-ink-600">
+            <li class="relative pl-6">
+              <span class="absolute top-[0.55em] left-0 h-1.5 w-1.5 rotate-45 bg-gold-400"></span>
+              Every contribution is acknowledged in writing.
+            </li>
+            <li class="relative pl-6">
+              <span class="absolute top-[0.55em] left-0 h-1.5 w-1.5 rotate-45 bg-gold-400"></span>
+              Contributions in kind — rice, dal, oil, provisions, medicines, school materials — are equally welcome.
+            </li>
+            <li class="relative pl-6">
+              <span class="absolute top-[0.55em] left-0 h-1.5 w-1.5 rotate-45 bg-gold-400"></span>
+              An annual activity report is published, so you can see what the year became.
+            </li>
+            <li class="relative pl-6">
+              <span class="absolute top-[0.55em] left-0 h-1.5 w-1.5 rotate-45 bg-gold-400"></span>
+              We do not solicit donations by telephone, and we will never ask for card details.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* -------------------------------------------------------------- Visit */}
+  <Section space="md">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <Lotus class="mx-auto h-6 w-auto text-gold-400" />
+      <h2 class="mt-8 text-[1.9rem] leading-tight font-semibold sm:text-[2.3rem]">Or simply come and sit with us</h2>
+      <p class="mt-5 text-[1.02rem] leading-relaxed text-ink-600">
+        The Geetha Homam is at nine every morning and anyone may join it. The 23rd of the month is the busiest and the
+        most welcoming day to visit: three medical camps in the morning, and around twelve hundred people at lunch.
+      </p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        <Button href="/sadhana/" variant="outline">Daily timings</Button>
+        <Button href={contact.mapsUrl} variant="outline" external>Directions</Button>
+      </div>
+    </div>
+  </Section>
+
+  <CallToAction
+    eyebrow="Thank you"
+    title="Whatever you can give — an hour, a skill, a sum — is received here as seva."
+    text="Write to us at any time. We read every message ourselves."
+    primary={{ href: '/contact/', label: 'Contact the Kuteer' }}
+    secondary={{ href: '/impact/', label: 'See this year’s report' }}
+  />
+</BaseLayout>

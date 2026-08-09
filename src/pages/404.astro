@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import Lotus from '../components/Lotus.astro';
+import { nav } from '../data/site';
+---
+
+<BaseLayout title="Page not found" description="The page you were looking for is not here.">
+  <section class="relative isolate flex min-h-[78svh] items-center overflow-hidden bg-ink-950">
+    <div
+      class="pointer-events-none absolute top-1/2 left-1/2 h-[32rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(192,141,51,0.18),transparent_70%)]"
+    >
+    </div>
+
+    <div class="relative mx-auto max-w-2xl px-5 py-32 text-center sm:px-8">
+      <Lotus class="mx-auto h-6 w-auto text-gold-400" />
+      <p class="eyebrow mt-8 !text-gold-300">404</p>
+      <h1 class="mt-4 text-[2.2rem] leading-tight font-semibold text-white sm:text-[3rem]">
+        This page is not here.
+      </h1>
+      <p class="mt-6 text-[1.02rem] leading-relaxed text-ink-100/75">
+        The address may have changed, or the link that brought you here may be old. Everything on the site can be
+        reached from the pages below.
+      </p>
+
+      <div class="mt-10 flex flex-wrap justify-center gap-2.5">
+        <a
+          href="/"
+          class="rounded-full border border-white/25 px-4 py-2 text-[0.85rem] font-medium text-white/85 transition hover:border-white/60 hover:text-white"
+          >Home</a
+        >
+        {
+          nav.map((item) => (
+            <a
+              href={item.href}
+              class="rounded-full border border-white/25 px-4 py-2 text-[0.85rem] font-medium text-white/85 transition hover:border-white/60 hover:text-white"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="mt-10">
+        <Button href="/" variant="primary">Back to the Kuteer</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

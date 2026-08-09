@@ -1,0 +1,85 @@
+---
+import { channel } from '../data/videos';
+
+interface Props {
+  /** 'shorts' leads with the Anjaneya's Command shorts; 'channel' leads with the channel itself. */
+  focus?: 'shorts' | 'channel';
+  tone?: 'ink' | 'paper';
+  class?: string;
+}
+const { focus = 'channel', tone = 'ink', class: className = '' } = Astro.props;
+const invert = tone === 'ink';
+
+const copy =
+  focus === 'shorts'
+    ? {
+        eyebrow: 'As they are given',
+        title: 'New commands, as short films',
+        text: 'Anjaneya’s commands continue to be received. They are posted as Shorts on the Kuteer’s YouTube channel, added regularly, and free to watch.',
+        cta: 'Watch the Shorts',
+        href: channel.shortsUrl,
+      }
+    : {
+        eyebrow: 'On YouTube',
+        title: 'The Kuteer’s channel',
+        text: 'Talks, satsangs and the Shorts carrying Anjaneya’s commands — published as they come, and open to everyone.',
+        cta: 'Visit the channel',
+        href: channel.url,
+      };
+---
+
+<div
+  class:list={[
+    'reveal overflow-hidden rounded-2xl',
+    invert ? 'bg-ink-950 ring-1 ring-white/10' : 'bg-paper ring-1 ring-ink-900/10',
+    className,
+  ]}
+>
+  <div class="grid items-center gap-8 p-8 sm:p-10 lg:grid-cols-[1fr_auto] lg:gap-12">
+    <div>
+      <div class="flex items-center gap-3">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[#FF0000] text-white">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
+            <path
+              d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.5 4.3 12 4.3 12 4.3s-7.5 0-9.4.5A3 3 0 0 0 .5 6.9C0 8.8 0 12 0 12s0 3.2.5 5.1a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.1.5-5.1s0-3.2-.5-5.1ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"
+            ></path>
+          </svg>
+        </span>
+        <p class:list={['eyebrow !mb-0', invert && '!text-gold-300']}>{copy.eyebrow}</p>
+      </div>
+
+      <h2 class:list={['mt-4 text-[1.6rem] leading-snug font-semibold sm:text-[2rem]', invert && '!text-white']}>
+        {copy.title}
+      </h2>
+      <p class:list={['mt-4 max-w-xl text-[0.98rem] leading-relaxed', invert ? 'text-ink-100/75' : 'text-ink-600']}>
+        {copy.text}
+      </p>
+      <p class:list={['mt-4 text-[0.82rem]', invert ? 'text-ink-300/70' : 'text-ink-500']}>{channel.handle}</p>
+    </div>
+
+    <div class="flex flex-wrap gap-3">
+      <a
+        href={copy.href}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-2 rounded-full bg-kumkum-500 px-6 py-3 text-[0.9rem] font-semibold text-white transition hover:bg-kumkum-600"
+      >
+        {copy.cta}
+        <svg viewBox="0 0 20 20" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 4h9v9M16 4L4.5 15.5"></path>
+        </svg>
+      </a>
+      <a
+        href="/media/"
+        class:list={[
+          'inline-flex items-center gap-2 rounded-full px-6 py-3 text-[0.9rem] font-semibold transition',
+          invert
+            ? 'border border-white/30 text-white hover:border-white/60 hover:bg-white/10'
+            : 'border border-ink-900/20 text-ink-800 hover:border-ink-900/40 hover:bg-ink-900/[0.04]',
+        ]}
+      >
+        All talks
+      </a>
+    </div>
+  </div>
+</div>

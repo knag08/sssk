@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import StatBand from '../components/StatBand.astro';
+import ScheduleTable from '../components/ScheduleTable.astro';
+import CallToAction from '../components/CallToAction.astro';
+import SevaIcon from '../components/SevaIcon.astro';
+import { reportYear } from '../data/site';
+
+import heroImage from '../assets/photos/eye-camp-gathering-01.jpg';
+
+const breakdown = [
+  {
+    icon: 'bowl' as const,
+    title: 'Daily and monthly Narayana Seva',
+    lines: [
+      'Lunch served to around 55 underprivileged, elderly and destitute people every day, across Puttaparthi town and the surrounding villages.',
+      'Once a month, on the 23rd, this expands to roughly 1,200 people at the Kuteer premises.',
+      'Snacks are provided to the tuition children on every class day, and free drinking water is available around the clock.',
+      'Vanara Seva is performed twice weekly, feeding the monkey troops in the areas around Puttaparthi.',
+    ],
+    href: '/seva/narayana-seva/',
+  },
+  {
+    icon: 'stethoscope' as const,
+    title: 'Medical camps',
+    lines: [
+      'Three free camps run at the premises on the 23rd of every month.',
+      'Eye camp — 60 to 70 people screened, with surgical support arranged through Sankara Eye Hospital, Bangalore.',
+      'Allopathy camp — general health check-ups for 20 to 25 patients, with all medicines given free.',
+      'Naturopathy camp — natural treatments for around 10 patients managing chronic conditions.',
+    ],
+    href: '/seva/medical-camps/',
+  },
+  {
+    icon: 'book' as const,
+    title: 'Tuition and skill development',
+    lines: [
+      'Daily tuition for approximately 40 students from classes 1 to 9, six days a week.',
+      'Weekly computer awareness classes for grades 8 and 9, and yoga sessions on Sundays.',
+      'An excursion to Bangalore — the Jawaharlal Nehru Planetarium, the Visvesvaraya Industrial and Technological Museum, Cubbon Park and the aquarium.',
+    ],
+    href: '/seva/education/',
+  },
+];
+---
+
+<BaseLayout
+  title="Impact"
+  description={`The Sri Sathya Sai Kuteer activity report for ${reportYear} — meals served, patients treated, litres of water given and children supported.`}
+>
+  <PageHero
+    eyebrow={`Activity report ${reportYear}`}
+    title="An account of the year"
+    lede="These figures are published so that anyone who has given time or money to the Kuteer can see precisely what it became."
+    image={heroImage}
+    imageAlt="A large gathering of patients waiting at the monthly free eye camp"
+  />
+
+  {/* ------------------------------------------------------------ Numbers */}
+  <Section space="md">
+    <StatBand />
+  </Section>
+
+  {/* ---------------------------------------------------------- Breakdown */}
+  <Section tone="deep" space="lg">
+    <SectionHeading
+      eyebrow="In detail"
+      title="What those numbers were made of"
+      lede="Each figure above is the sum of a service performed on a schedule — most of them daily, the rest on the 23rd of the month."
+    />
+
+    <div class="mt-14 space-y-6">
+      {
+        breakdown.map((item, i) => (
+          <article class="reveal rounded-2xl bg-paper p-8 ring-1 ring-ink-900/8 sm:p-10">
+            <div class="grid gap-8 lg:grid-cols-[auto_1fr]">
+              <div class="flex items-center gap-5 lg:w-64 lg:flex-col lg:items-start">
+                <span class="inline-grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gold-50 text-gold-600 ring-1 ring-gold-200 ring-inset">
+                  <SevaIcon name={item.icon} class="h-5 w-5" />
+                </span>
+                <div>
+                  <p class="font-display text-[0.9rem] font-semibold text-gold-700 tabular-nums">
+                    {String(i + 1).padStart(2, '0')}
+                  </p>
+                  <h3 class="mt-1 text-[1.3rem] leading-snug font-semibold">{item.title}</h3>
+                </div>
+              </div>
+
+              <div>
+                <ul class="grid gap-3.5">
+                  {item.lines.map((line) => (
+                    <li class="relative pl-6 text-[0.96rem] leading-relaxed text-ink-700">
+                      <span class="absolute top-[0.62em] left-0 h-1.5 w-1.5 rotate-45 bg-gold-400" />
+                      {line}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={item.href}
+                  class="mt-6 inline-flex items-center gap-1.5 text-[0.83rem] font-semibold text-kumkum-600 hover:text-kumkum-700"
+                >
+                  Read more
+                  <svg viewBox="0 0 20 20" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 10h11m0 0-4.2-4.2M15 10l-4.2 4.2" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* ----------------------------------------------------------- Schedule */}
+  <Section space="md">
+    <SectionHeading
+      eyebrow="Location and frequency"
+      title="The full schedule of activities"
+      lede="Reproduced from the activity report, so that the commitments behind the figures are visible in full."
+    />
+    <div class="mt-12">
+      <ScheduleTable />
+    </div>
+  </Section>
+
+  {/* ------------------------------------------------------------- Note */}
+  <Section tone="deep" space="sm">
+    <div class="reveal mx-auto max-w-3xl rounded-2xl border border-ink-900/10 bg-paper p-8 text-center sm:p-10">
+      <p class="eyebrow">A note on these figures</p>
+      <p class="mt-4 text-[0.98rem] leading-relaxed text-ink-600">
+        All figures on this page are taken from the Sri Sathya Sai Kuteer activity report for the financial year {
+          reportYear
+        }. A printed copy can be requested from the Trust, and the report is presented in full to the trustees each
+        year.
+      </p>
+    </div>
+  </Section>
+
+  <CallToAction
+    title="Next year's numbers are not written yet."
+    text="What they become depends on the hands and the means available to this work over the coming twelve months."
+    primary={{ href: '/get-involved/', label: 'Ways to help' }}
+    secondary={{ href: '/gallery/', label: 'See the year' }}
+  />
+</BaseLayout>

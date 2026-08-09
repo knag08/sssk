@@ -1,0 +1,69 @@
+---
+/** The full service schedule, exactly as recorded in the activity report. */
+const rows = [
+  { activity: 'Daily Narayana Seva', place: 'Puttaparthi town and surrounding villages', when: 'Daily' },
+  { activity: 'Monthly Narayana Seva', place: 'Sri Sathya Sai Kuteer premises', when: '23rd of every month' },
+  {
+    activity: 'Narayana Seva at the mobile medical camps',
+    place: 'Patha Bathalapalli and Veldurthi',
+    when: '5th and 11th of every month',
+  },
+  { activity: 'Free drinking water', place: 'Sri Sathya Sai Kuteer premises', when: '24 hours, every day' },
+  { activity: 'Tuitions and snacks for children', place: 'Sri Sathya Sai Kuteer premises', when: 'Monday to Saturday' },
+  {
+    activity: 'Village tuition centres',
+    place: 'Narsimpalli and Narsimpalli Thanda',
+    when: 'Six days a week',
+  },
+  { activity: 'Computer classes', place: 'Sri Sathya Sai Kuteer premises', when: 'Once a week' },
+  { activity: 'Yoga sessions', place: 'Sri Sathya Sai Kuteer premises', when: 'Sundays' },
+  { activity: 'Free eye camp', place: 'Sri Sathya Sai Kuteer premises', when: '23rd of every month' },
+  { activity: 'Allopathy medical camp', place: 'Sri Sathya Sai Kuteer premises', when: '23rd of every month' },
+  {
+    activity: 'Naturopathy and Sujok therapy',
+    place: 'Sri Sathya Sai Kuteer premises',
+    when: '20th to 24th of every month',
+  },
+  { activity: 'Vanara Seva', place: 'Puttaparthi, surrounding villages and Bukkapatnam', when: 'Twice a week' },
+];
+---
+
+<div class="reveal overflow-hidden rounded-2xl bg-paper ring-1 ring-ink-900/10">
+  {/* Table on wider screens */}
+  <table class="hidden w-full border-collapse text-left sm:table">
+    <caption class="sr-only">Service activities, their locations and how often they run</caption>
+    <thead>
+      <tr class="bg-ink-950 text-white">
+        <th scope="col" class="px-6 py-4 text-[0.7rem] font-semibold tracking-[0.16em] uppercase">Activity</th>
+        <th scope="col" class="px-6 py-4 text-[0.7rem] font-semibold tracking-[0.16em] uppercase">Location</th>
+        <th scope="col" class="px-6 py-4 text-[0.7rem] font-semibold tracking-[0.16em] uppercase">Frequency</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((row, i) => (
+          <tr class:list={[i % 2 === 1 && 'bg-ink-900/[0.025]']}>
+            <th scope="row" class="px-6 py-4 align-top text-[0.94rem] font-semibold text-ink-900">
+              {row.activity}
+            </th>
+            <td class="px-6 py-4 align-top text-[0.9rem] text-ink-600">{row.place}</td>
+            <td class="px-6 py-4 align-top text-[0.9rem] whitespace-nowrap text-ink-700">{row.when}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  {/* Stacked list on phones */}
+  <ul class="divide-y divide-ink-900/8 sm:hidden">
+    {
+      rows.map((row) => (
+        <li class="px-5 py-4">
+          <p class="text-[0.95rem] font-semibold text-ink-900">{row.activity}</p>
+          <p class="mt-1.5 text-[0.85rem] text-ink-600">{row.place}</p>
+          <p class="mt-1 text-[0.78rem] font-semibold tracking-wide text-gold-700 uppercase">{row.when}</p>
+        </li>
+      ))
+    }
+  </ul>
+</div>
