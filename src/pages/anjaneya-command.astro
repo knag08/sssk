@@ -9,10 +9,11 @@ import ChannelCallout from '../components/ChannelCallout.astro';
 import { books, otherBookCountWord } from '../data/books';
 import { Image } from 'astro:assets';
 import anjaneyaImage from '../assets/panchamukhi-anjaneya.jpg';
+import shrineImage from '../assets/photos/anjaneya-abhishekam-01.jpg';
 
 const volumes = books.filter((b) => b.group === 'anjaneya');
 
-import heroImage from '../assets/photos/bhajans-mandir-01.jpg';
+import heroImage from '../assets/photos/anjaneya-shrine-01.jpg';
 ---
 
 <BaseLayout
@@ -24,25 +25,41 @@ import heroImage from '../assets/photos/bhajans-mandir-01.jpg';
     title="Anjaneya’s Command"
     lede="Lord Panchamukhi Anjaneya Swamy is the guardian deity of this site. This is the message given for Sri Sathya Sai Kuteer — the instruction that everything here follows."
     image={heroImage}
-    imageAlt="Devotees gathered for bhajans in the Kuteer mandir"
+    imageAlt="The shrine of Lord Panchamukhi Anjaneya Swamy at the Kuteer, garlanded for his celebration"
   />
 
   <Section space="lg">
     <div class="mx-auto max-w-3xl">
-      {/* The Kshetrapalaka himself, then his words */}
-      <figure class="reveal text-center">
-        <Image
-          src={anjaneyaImage}
-          alt="The murti of Lord Panchamukhi Anjaneya Swamy, guardian deity of Sri Sathya Sai Kuteer"
-          widths={[380, 620, 900]}
-          sizes="(min-width:640px) 22rem, 70vw"
-          class="mx-auto w-[16rem] rounded-2xl object-cover sm:w-[20rem]"
-          loading="eager"
-        />
-        <figcaption class="mt-5 text-[0.85rem] text-ink-500">
-          Lord Panchamukhi Anjaneya Swamy — <em>Kshetrapalaka</em> of this site
-        </figcaption>
-      </figure>
+      {/* The Kshetrapalaka himself, his shrine here, then his words */}
+      <div class="reveal grid gap-8 sm:grid-cols-2 sm:gap-10">
+        <figure>
+          <Image
+            src={anjaneyaImage}
+            alt="The five-faced form of Lord Panchamukhi Anjaneya Swamy"
+            widths={[360, 620, 900]}
+            sizes="(min-width:640px) 18rem, 80vw"
+            class="aspect-[4/5] w-full rounded-2xl object-cover"
+            loading="eager"
+          />
+          <figcaption class="mt-4 text-[0.85rem] leading-relaxed text-ink-500">
+            Lord Panchamukhi Anjaneya Swamy — <em>Kshetrapalaka</em> of this site
+          </figcaption>
+        </figure>
+
+        <figure>
+          <Image
+            src={shrineImage}
+            alt="Abhishekam performed for Lord Panchamukhi Anjaneya Swamy at the Kuteer shrine"
+            widths={[360, 620, 900]}
+            sizes="(min-width:640px) 18rem, 80vw"
+            class="aspect-[4/5] w-full rounded-2xl object-cover"
+            loading="eager"
+          />
+          <figcaption class="mt-4 text-[0.85rem] leading-relaxed text-ink-500">
+            His shrine at the Kuteer, during abhishekam
+          </figcaption>
+        </figure>
+      </div>
 
       <div class="reveal mt-12 text-center">
         <Lotus class="mx-auto h-6 w-auto text-gold-400" />

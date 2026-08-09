@@ -36,6 +36,8 @@ const rules: Array<[string, CategoryId]> = [
   ['ro-water', 'water'],
   ['vanara', 'vanara'],
   ['havan', 'worship'],
+  ['mandir', 'worship'],
+  ['anjaneya', 'worship'],
   ['bhajans', 'worship'],
   ['name-chanting', 'worship'],
 ];
@@ -100,12 +102,29 @@ const captions: Record<string, string> = {
   'name-chanting-02': 'Devotees gathered for the daily name chanting',
   'narayana-seva-village-02': 'Meals served from the vehicle on the village Narayana Seva round',
   'narayana-seva-village-03': 'Villagers gathering with their vessels as the Narayana Seva arrives',
+  'narayana-seva-breakfast-01': 'Breakfast carried out at eight in the morning to an elderly woman near the Kuteer',
+  'narayana-seva-breakfast-02': 'An elderly man on his way home with the morning meal',
+  'narayana-seva-breakfast-03': 'A woman receiving the morning breakfast on her doorstep',
+  'narayana-seva-street-01': 'A volunteer kneeling in the street to sit with an elderly man during the daily round',
+  'narayana-seva-mobile-camp-01': 'Volunteers portioning rice for the mobile medical camp lunch',
+  'narayana-seva-mobile-camp-02': 'Packed meals crated and ready to travel to the mobile camp',
+  'narayana-seva-food-01': 'The day’s rice and sambar, prepared in the Kuteer kitchen',
+  'monthly-narayana-seva-hall-02': 'The Kuteer hall at lunch on the 23rd, seated to the walls',
+  'medical-camp-sankara-bus-01': 'Patients and volunteers beside the Sankara Eye Hospital bus',
+  'eye-camp-outdoor-01': 'Patients waiting under the canopy at the monthly eye camp',
+  'eye-camp-village-screening-01': 'Eye screening carried out in a village, to reach those who cannot travel',
+  'water-seva-signboard-01': 'Collecting free drinking water beneath the Kuteer’s signboard',
+  'education-school-meal-01': 'Children served a hot meal, seated in a row with their plates',
+  'mandir-altar-01': 'The altar in the Kuteer mandir, dressed for the day',
+  'anjaneya-shrine-01': 'The shrine of Lord Panchamukhi Anjaneya Swamy at the Kuteer, garlanded for his celebration',
+  'anjaneya-abhishekam-01': 'Abhishekam performed for Lord Panchamukhi Anjaneya Swamy, guardian deity of the Kuteer',
   'kuteer-signboard-water-01': 'The Sri Sathya Sai Kuteer signboard in Telugu and English',
   'kuteer-visit-01': 'A home visit to a family supported by the Kuteer',
 };
 
 /** Photographs that lead each category — used to order the grid pleasantly. */
 const featured = [
+  'anjaneya-shrine-01',
   'havan-geetha-homam-01',
   'bhajans-mandir-01',
   'monthly-narayana-seva-hall-01',

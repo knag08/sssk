@@ -31,6 +31,8 @@ gallery:
     alt: Water being handed over at the Kuteer gate
   - src: ../../assets/photos/kuteer-signboard-water-01.jpg
     alt: The Kuteer signboard in Telugu and English beside the water service
+  - src: ../../assets/photos/water-seva-signboard-01.jpg
+    alt: Collecting free drinking water beneath the Kuteer’s signboard
 ---
 
 Clean water is a right, not a purchase. Yet in and around Puttaparthi many families simply cannot afford safe drinking water month after month.

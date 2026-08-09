@@ -44,6 +44,12 @@ gallery:
     alt: A nurse attending to an elderly woman at the camp
   - src: ../../assets/photos/medical-camp-busy-01.jpg
     alt: The camp hall busy with patients, volunteers and medical staff
+  - src: ../../assets/photos/medical-camp-sankara-bus-01.jpg
+    alt: Patients and volunteers beside the Sankara Eye Hospital bus
+  - src: ../../assets/photos/eye-camp-outdoor-01.jpg
+    alt: Patients waiting under the canopy at the monthly eye camp
+  - src: ../../assets/photos/eye-camp-village-screening-01.jpg
+    alt: Eye screening carried out in a village, to reach those who cannot travel
 ---
 
 Healthcare should not depend on what a family can afford. On the 23rd of every month the Kuteer opens its doors to three free camps running side by side — and every medicine dispensed is provided at no cost by the Trust.

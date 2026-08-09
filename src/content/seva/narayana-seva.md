@@ -35,6 +35,18 @@ gallery:
     alt: A volunteer visiting an elderly resident in a village near Puttaparthi
   - src: ../../assets/photos/narayana-seva-elderly-02.jpg
     alt: A meal being offered to an elderly woman seated on the ground
+  - src: ../../assets/photos/narayana-seva-breakfast-01.jpg
+    alt: Breakfast carried out at eight in the morning to an elderly woman near the Kuteer
+  - src: ../../assets/photos/narayana-seva-breakfast-02.jpg
+    alt: An elderly man on his way home with the morning meal
+  - src: ../../assets/photos/narayana-seva-street-01.jpg
+    alt: A volunteer kneeling in the street to sit with an elderly man during the daily round
+  - src: ../../assets/photos/narayana-seva-mobile-camp-01.jpg
+    alt: Volunteers portioning rice for the mobile medical camp lunch
+  - src: ../../assets/photos/narayana-seva-mobile-camp-02.jpg
+    alt: Packed meals crated and ready to travel to the mobile camp
+  - src: ../../assets/photos/monthly-narayana-seva-hall-02.jpg
+    alt: The Kuteer hall at lunch on the 23rd, seated to the walls
 ---
 
 A man once brought an elderly woman to an old-age home. "She has lived on our street a long time," he said. "She is destitute — I hoped you could give her shelter." While he was speaking, the friend beside him turned and asked quietly: *did you bring your own mother here?*
