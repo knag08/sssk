@@ -9,7 +9,7 @@ import SectionHeading from '../components/SectionHeading.astro';
 import Lotus from '../components/Lotus.astro';
 import CallToAction from '../components/CallToAction.astro';
 import ChannelCallout from '../components/ChannelCallout.astro';
-import { bookGroups, books } from '../data/books';
+import { bookCountWord, bookGroups, books } from '../data/books';
 
 import heroImage from '../assets/photos/education-student-writing-01.jpg';
 
@@ -31,12 +31,12 @@ const grouped = bookGroups.map((g) => ({
 
 <BaseLayout
   title="Books"
-  description="Free eBooks from Sri Sathya Sai Kuteer — Anjaneya’s Command in Telugu and English, Nithya Sathya Bodha, Inner Experiences, The Making of a Yogini and more. All free to download."
+  description="Free eBooks from Sri Sathya Sai Kuteer — Anjaneya’s Command in Telugu and English, Nithya Sathya Bodha, Inner Experiences, Making of a Yogi and more. All free to download."
 >
   <PageHero
     eyebrow="Free to download"
     title="Books from the Kuteer"
-    lede="Thirteen titles, in Telugu and in English, offered without charge. They are an attempt to set down the love and grace shown by Bhagavan Sri Sathya Sai Baba and by Lord Hanuman."
+    lede={`${bookCountWord[0].toUpperCase() + bookCountWord.slice(1)} titles, in Telugu and in English, offered without charge. They are an attempt to set down the love and grace shown by Bhagavan Sri Sathya Sai Baba and by Lord Hanuman.`}
     image={heroImage}
     imageAlt="A student writing at the Kuteer"
   />

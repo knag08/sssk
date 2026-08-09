@@ -9,6 +9,7 @@ import ChannelCallout from '../components/ChannelCallout.astro';
 import CallToAction from '../components/CallToAction.astro';
 import Button from '../components/Button.astro';
 import { journeys, satsangArchive, souljourns, teachings } from '../data/videos';
+import { bookCountWord } from '../data/books';
 
 import heroImage from '../assets/photos/monthly-narayana-seva-dining-01.jpg';
 ---
@@ -88,7 +89,7 @@ import heroImage from '../assets/photos/monthly-narayana-seva-dining-01.jpg';
   <CallToAction
     eyebrow="Prefer to read?"
     title="Every talk here has a book beside it."
-    text="The same teaching is set down in thirteen volumes, in Telugu and English, all free to download."
+    text={`The same teaching is set down in ${bookCountWord} volumes, in Telugu and English, all free to download.`}
     primary={{ href: '/books/', label: 'Browse the books' }}
     secondary={{ href: '/sadhana/', label: 'Daily practice' }}
   />

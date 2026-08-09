@@ -6,7 +6,7 @@ import Lotus from '../components/Lotus.astro';
 import CallToAction from '../components/CallToAction.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ChannelCallout from '../components/ChannelCallout.astro';
-import { books } from '../data/books';
+import { books, otherBookCountWord } from '../data/books';
 import { Image } from 'astro:assets';
 import anjaneyaImage from '../assets/panchamukhi-anjaneya.jpg';
 
@@ -145,7 +145,7 @@ import heroImage from '../assets/photos/bhajans-mandir-01.jpg';
     </div>
 
     <p class="reveal mt-6 text-[0.85rem] text-ink-500">
-      Ten further volumes — on inner experience, on daily practice, on the making of a yogini — are on the <a
+      {otherBookCountWord[0].toUpperCase() + otherBookCountWord.slice(1)} further volumes — on inner experience, on daily practice, on the making of a yogi — are on the <a
         href="/books/"
         class="underline decoration-gold-300 underline-offset-2 hover:text-kumkum-600">books page</a
       >.

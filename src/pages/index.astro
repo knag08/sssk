@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import { bookCountWord } from '../data/books';
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
@@ -255,7 +256,7 @@ const homeGallery = [
     <SectionHeading
       eyebrow="Read and listen"
       title="The teaching, freely given"
-      lede="Thirteen volumes and an archive of talks — none of it sold, none of it behind a sign-up."
+      lede={`${bookCountWord[0].toUpperCase() + bookCountWord.slice(1)} volumes and an archive of talks — none of it sold, none of it behind a sign-up.`}
       align="center"
     />
 
@@ -270,10 +271,10 @@ const homeGallery = [
           >
             <SevaIcon name="book" class="h-5 w-5" />
           </span>
-          <h3 class="mt-6 text-[1.5rem] font-semibold">Thirteen books, free to download</h3>
+          <h3 class="mt-6 text-[1.5rem] font-semibold">{bookCountWord[0].toUpperCase() + bookCountWord.slice(1)} books, free to download</h3>
           <p class="mt-3 text-[0.96rem] leading-relaxed text-ink-600">
-            Anjaneya’s Command in three volumes, in Telugu and English. Nithya Sathya Bodha. Inner Experiences. The
-            Making of a Yogini. All of them PDFs, all of them free.
+            Anjaneya’s Command in three volumes, in Telugu and English. Nithya Sathya Bodha. Inner Experiences.
+            Making of a Yogi. All of them PDFs, all of them free.
           </p>
         </div>
         <span class="inline-flex items-center gap-1.5 text-[0.85rem] font-semibold text-kumkum-600">

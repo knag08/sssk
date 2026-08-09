@@ -34,6 +34,12 @@ export const bookGroups = [
     blurb: 'Shivangani’s account of what is met on the inward path, and what it asks of a seeker.',
   },
   {
+    id: 'yogi',
+    title: 'Making of a Yogi',
+    blurb:
+      'Gyaneshwar (Gyani) Rao Baile’s own meditation diary, kept year after year — the visions as they came, the words heard in them, and what they were later understood to mean. Second edition.',
+  },
+  {
     id: 'yogini',
     title: 'The Making of a Yogini',
     blurb: 'The life that grew into Swamini Mata Vishwatmananda Giri, told plainly.',
@@ -59,8 +65,29 @@ export const books: Book[] = [
   { group: 'experiences', title: 'Inner Experiences', language: 'English', file: 'inner-experiences-english.pdf' },
   { group: 'experiences', title: 'Anthargatha Anubhavulu', note: 'Inner Experiences, in Telugu', language: 'Telugu', file: 'anthargatha-anubhavulu-telugu.pdf' },
 
+  { group: 'yogi', title: 'Making of a Yogi', note: 'Second edition', language: 'English', file: 'making-of-a-yogi-second-edition.pdf' },
+
   { group: 'yogini', title: 'Making of a Yogini', language: 'English', file: 'making-of-a-yogini-english.pdf' },
   { group: 'yogini', title: 'Sai Shivangini', note: 'Making of a Yogini, in Telugu', language: 'Telugu', file: 'sai-shivangini-telugu.pdf' },
 
   { group: 'saadhana', title: 'Saadhana — My Spiritual Journey', language: 'English', file: 'saadhana-my-spiritual-journey-english.pdf' },
 ];
+
+/**
+ * Counts used in prose across the site. Deriving them here means adding a book
+ * above updates every page that mentions how many there are.
+ */
+const WORDS = [
+  'no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+  'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen',
+  'nineteen', 'twenty',
+];
+
+/** Spelled-out number for use in a sentence; falls back to digits past twenty. */
+export const inWords = (n: number) => WORDS[n] ?? String(n);
+
+export const bookCount = books.length;
+export const bookCountWord = inWords(bookCount);
+
+/** How many titles are not part of the Anjaneya's Command set. */
+export const otherBookCountWord = inWords(bookCount - books.filter((b) => b.group === 'anjaneya').length);

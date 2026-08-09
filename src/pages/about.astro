@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { bookCountWord } from '../data/books';
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
@@ -162,7 +163,7 @@ const pillars = [
             happens at the cooking vessel.
           </p>
           <p>
-            That teaching has been set down in writing and given as talks. Both are offered free: thirteen <a
+            That teaching has been set down in writing and given as talks. Both are offered free: {bookCountWord} <a
               href="/books/">volumes to download</a
             >, and a growing archive of <a href="/media/">recorded satsangs and talks</a>.
           </p>
