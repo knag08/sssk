@@ -42,12 +42,12 @@ export const bookGroups = [
   {
     id: 'yogini',
     title: 'The Making of a Yogini',
-    blurb: 'The life that grew into Swamini Mata Vishwatmananda Giri, told plainly.',
+    blurb: 'Shivangini’s spiritual journey.',
   },
   {
     id: 'saadhana',
     title: 'Saadhana — My Spiritual Journey',
-    blurb: 'One sadhak’s road, set down for the use of those walking behind.',
+    blurb: 'Day to day spiritual practice that children of various ages can follow.',
   },
 ] as const;
 
