@@ -21,28 +21,31 @@ export const bookGroups = [
     id: 'anjaneya',
     title: 'Anjaneya’s Command',
     blurb:
-      'The commands of Lord Panchamukhi Anjaneya Swamy, recorded as they were given. Three volumes, in the original Telugu and in English translation.',
+      'The messages of Lord Panchamukhi Anjaneya Swamy were recorded as they were given, “as it is”, in Telugu. They are compiled into three volumes, the original Telugu alongside the English translation.',
   },
   {
     id: 'nithya',
     title: 'Nithya Sathya Bodha',
-    blurb: 'Daily teaching on truth — a companion for regular practice.',
+    blurb:
+      'Conversations between Bhagavan Sri Sathya Sai Baba and Swamini Vishwatmananda Giri (Amma Visalakshi). “It is ‘Sathya Vidya’, which means the teaching that bestows on you that knowledge which is never changing, real, and eternal.”',
   },
   {
     id: 'experiences',
     title: 'Inner Experiences',
-    blurb: 'Shivangani’s account of what is met on the inward path, and what it asks of a seeker.',
+    blurb:
+      'Shivangini (Dolly Baile)’s first sixteen months of spiritual journey with Swami. All of it — dreams, visions, meditational experiences — occurred in the USA, and before that she had never known who Swami was.',
+  },
+  {
+    id: 'yogini',
+    title: 'Making of a Yogini',
+    blurb:
+      'The rest of Shivangini (Dolly Baile)’s spiritual journey, up to Jivan Mukthi. A chronological ascent through a sadhak’s experiences, as a householder.',
   },
   {
     id: 'yogi',
     title: 'Making of a Yogi',
     blurb:
-      'Gyaneshwar (Gyani) Rao Baile’s own meditation diary, kept year after year — the visions as they came, the words heard in them, and what they were later understood to mean. Second edition.',
-  },
-  {
-    id: 'yogini',
-    title: 'The Making of a Yogini',
-    blurb: 'Shivangini’s spiritual journey.',
+      'The spiritual journey of Gyani Baile, which began with Shivangini’s — then with Amma Visalakshi, Sri Sathya Sai Baba and Sri Anjaneya. Presented chronologically, showing the steps a sadhak passes through: sadhana, the cleansing of the chakras, the who-am-I enquiry, Brahm-anubhuti, Bindu and the rest.',
   },
   {
     id: 'saadhana',
