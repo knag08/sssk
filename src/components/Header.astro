@@ -19,7 +19,9 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
   id="site-header"
 >
   <div class="mx-auto flex max-w-7xl items-center gap-4 px-5 py-3.5 sm:px-8 lg:py-4">
-    <a href="/" class="group flex shrink-0 items-center gap-3" aria-label={`${site.name} — home`}>
+    {/* No aria-label: the visible wordmark beside the emblem is the accessible
+        name, and an aria-label that omitted "Puttaparthi" broke WCAG 2.5.3. */}
+    <a href="/" class="group flex shrink-0 items-center gap-3">
       <img
         src="/logo.png"
         alt=""
