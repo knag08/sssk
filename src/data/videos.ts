@@ -139,7 +139,7 @@ export const souljourns: Video[] = [
     id: 's082VZ2pwBM',
     title: 'The Making of a Yogini, Part 5',
     blurb:
-      '17 August 2012. She is in the fourth stage of cancer. Swami said “I will save you in the nick of time”. Things started shifting to me.',
+      '17 August 2012. Swami said “I will save you in the nick of time”. She was in the fourth stage of cancer. Unknowingly things started shifting to Gyani.',
     source: 'souljourns',
   },
 ];
