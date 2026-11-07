@@ -68,7 +68,7 @@ export const books: Book[] = [
   { group: 'experiences', title: 'Inner Experiences', language: 'English', file: 'inner-experiences-english.pdf' },
   { group: 'experiences', title: 'Anthargatha Anubhavulu', note: 'Inner Experiences, in Telugu', language: 'Telugu', file: 'anthargatha-anubhavulu-telugu.pdf' },
 
-  { group: 'yogi', title: 'Making of a Yogi', note: 'Second edition', language: 'English', file: 'making-of-a-yogi-second-edition.pdf' },
+  { group: 'yogi', title: 'Making of a Yogi', note: 'Third edition', language: 'English', file: 'MakingOfAYogi.pdf' },
 
   { group: 'yogini', title: 'Making of a Yogini', language: 'English', file: 'making-of-a-yogini-english.pdf' },
   { group: 'yogini', title: 'Sai Shivangini', note: 'Making of a Yogini, in Telugu', language: 'Telugu', file: 'sai-shivangini-telugu.pdf' },
