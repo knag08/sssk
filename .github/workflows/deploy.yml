@@ -44,3 +44,9 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # The site carries ~60 MB of book PDFs, and GitHub's own sync of that
+          # regularly runs past the action's ten-minute default — at which point
+          # it cancels a deployment that would otherwise have finished.
+          timeout: 1800000
+          error_count: 10
