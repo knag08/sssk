@@ -9,14 +9,14 @@ import SectionHeading from '../components/SectionHeading.astro';
 import Lotus from '../components/Lotus.astro';
 import CallToAction from '../components/CallToAction.astro';
 import ChannelCallout from '../components/ChannelCallout.astro';
-import { bookCountWord, bookGroups, books } from '../data/books';
+import { bookCountWord, bookDiskPath, bookGroups, bookHref, books, type Book } from '../data/books';
 
 import heroImage from '../assets/photos/education-student-writing-01.jpg';
 
 /** Read each PDF's size at build time so the page never carries a stale figure. */
-const sizeOf = (file: string) => {
+const sizeOf = (book: Book) => {
   try {
-    const mb = statSync(join(process.cwd(), 'public', 'books', file)).size / 1024 / 1024;
+    const mb = statSync(join(process.cwd(), ...bookDiskPath(book))).size / 1024 / 1024;
     return mb >= 1 ? `${mb.toFixed(1)} MB` : `${Math.round(mb * 1024)} KB`;
   } catch {
     return '';
@@ -25,7 +25,7 @@ const sizeOf = (file: string) => {
 
 const grouped = bookGroups.map((g) => ({
   ...g,
-  items: books.filter((b) => b.group === g.id).map((b) => ({ ...b, size: sizeOf(b.file) })),
+  items: books.filter((b) => b.group === g.id).map((b) => ({ ...b, size: sizeOf(b), href: bookHref(b) })),
 }));
 ---
 
@@ -66,7 +66,7 @@ const grouped = bookGroups.map((g) => ({
               {group.items.map((book) => (
                 <li>
                   <a
-                    href={`/books/${book.file}`}
+                    href={book.href}
                     download
                     class="group flex h-full flex-col justify-between gap-5 rounded-2xl bg-white p-6 ring-1 ring-ink-900/8 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-24px_rgba(12,28,49,0.5)] hover:ring-ink-900/18"
                   >

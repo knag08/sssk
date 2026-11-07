@@ -14,7 +14,18 @@ export interface Book {
   file: string;
   /** Volumes of the same work are grouped together on the page. */
   group: string;
+  /**
+   * Folder under `public/` the PDF is served from. Defaults to `books`. Set it
+   * only where a particular public URL has been shared and must keep working.
+   */
+  dir?: string;
 }
+
+/** The public URL of a book — the one place that decides it. */
+export const bookHref = (b: Book) => `/${b.dir ?? 'books'}/${b.file}`;
+
+/** Where the same PDF sits on disk, as path segments under the project root. */
+export const bookDiskPath = (b: Book) => ['public', ...(b.dir ?? 'books').split('/'), b.file];
 
 export const bookGroups = [
   {
@@ -68,7 +79,7 @@ export const books: Book[] = [
   { group: 'experiences', title: 'Inner Experiences', language: 'English', file: 'inner-experiences-english.pdf' },
   { group: 'experiences', title: 'Anthargatha Anubhavulu', note: 'Inner Experiences, in Telugu', language: 'Telugu', file: 'anthargatha-anubhavulu-telugu.pdf' },
 
-  { group: 'yogi', title: 'Making of a Yogi', note: 'Third edition', language: 'English', file: 'MakingOfAYogi.pdf' },
+  { group: 'yogi', title: 'Making of a Yogi', note: 'Third edition', language: 'English', file: 'MakingOfAYogi.pdf', dir: 'assets/books' },
 
   { group: 'yogini', title: 'Making of a Yogini', language: 'English', file: 'making-of-a-yogini-english.pdf' },
   { group: 'yogini', title: 'Sai Shivangini', note: 'Making of a Yogini, in Telugu', language: 'Telugu', file: 'sai-shivangini-telugu.pdf' },
